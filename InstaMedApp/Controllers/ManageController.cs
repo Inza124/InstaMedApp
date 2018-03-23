@@ -10,9 +10,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using InstaMedApp.Models;
 using InstaMedApp.Models.ManageViewModels;
 using InstaMedApp.Services;
+using InstaMedData.Models;
 
 namespace InstaMedApp.Controllers
 {

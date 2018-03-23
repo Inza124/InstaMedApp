@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 using InstaMedApp.Models;
 using InstaMedApp.Models.AccountViewModels;
 using InstaMedApp.Services;
+using InstaMedData.Models;
 
 namespace InstaMedApp.Controllers
 {

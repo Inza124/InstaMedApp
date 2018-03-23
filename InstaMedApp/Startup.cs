@@ -8,9 +8,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using InstaMedApp.Data;
 using InstaMedApp.Models;
 using InstaMedApp.Services;
+using InstaMedData;
+using InstaMedData.Models;
 
 namespace InstaMedApp
 {
