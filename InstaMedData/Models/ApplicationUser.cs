@@ -16,7 +16,7 @@ namespace InstaMedData.Models
         public String Password { get; set; }
         public DateTime JoinDate { get; set; }
 
-        // public Role UserRole { get; set; }
-        // public ICollection<Test> Tests { get; set; }
+        public Role UserRole { get; set; }
+        public ICollection<Test> Tests { get; set; }
     }
 }
