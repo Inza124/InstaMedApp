@@ -11,9 +11,10 @@ using System;
 namespace InstaMedData.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180324124309_user_edt")]
+    partial class user_edt
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -96,13 +97,13 @@ namespace InstaMedData.Migrations
 
                     b.Property<int?>("TSHTestId");
 
-                    b.Property<int?>("visitId");
+                    b.Property<int?>("TestId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("TSHTestId");
 
-                    b.HasIndex("visitId");
+                    b.HasIndex("TestId");
 
                     b.ToTable("Results");
                 });
@@ -126,53 +127,23 @@ namespace InstaMedData.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("Date");
+
                     b.Property<string>("Name");
 
-                    b.Property<float>("Price");
+                    b.Property<double>("Price");
 
-                    b.Property<int?>("VisitId");
+                    b.Property<string>("Status");
 
-                    b.Property<int?>("testTypeCategoryCategoryId");
+                    b.Property<int>("TestType");
 
-                    b.Property<int?>("testTypeNameNameId");
+                    b.Property<string>("TestUserId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("VisitId");
-
-                    b.HasIndex("testTypeCategoryCategoryId");
-
-                    b.HasIndex("testTypeNameNameId");
+                    b.HasIndex("TestUserId");
 
                     b.ToTable("Tests");
-                });
-
-            modelBuilder.Entity("InstaMedData.Models.TestTypeCategory", b =>
-                {
-                    b.Property<int>("CategoryId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Category");
-
-                    b.Property<int>("NameId");
-
-                    b.HasKey("CategoryId");
-
-                    b.ToTable("TestTypeCategories");
-                });
-
-            modelBuilder.Entity("InstaMedData.Models.TestTypeName", b =>
-                {
-                    b.Property<int>("NameId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("CategoryId");
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("NameId");
-
-                    b.ToTable("TestTypeNames");
                 });
 
             modelBuilder.Entity("InstaMedData.Models.TSH", b =>
@@ -185,22 +156,6 @@ namespace InstaMedData.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TSHs");
-                });
-
-            modelBuilder.Entity("InstaMedData.Models.Visit", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("UserId");
-
-                    b.Property<DateTime>("dateTime");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Visits");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -324,31 +279,16 @@ namespace InstaMedData.Migrations
                         .WithMany()
                         .HasForeignKey("TSHTestId");
 
-                    b.HasOne("InstaMedData.Models.Visit", "visit")
+                    b.HasOne("InstaMedData.Models.Test")
                         .WithMany("TestResults")
-                        .HasForeignKey("visitId");
+                        .HasForeignKey("TestId");
                 });
 
             modelBuilder.Entity("InstaMedData.Models.Test", b =>
                 {
-                    b.HasOne("InstaMedData.Models.Visit")
+                    b.HasOne("InstaMedData.Models.ApplicationUser", "TestUser")
                         .WithMany("Tests")
-                        .HasForeignKey("VisitId");
-
-                    b.HasOne("InstaMedData.Models.TestTypeCategory", "testTypeCategory")
-                        .WithMany()
-                        .HasForeignKey("testTypeCategoryCategoryId");
-
-                    b.HasOne("InstaMedData.Models.TestTypeName", "testTypeName")
-                        .WithMany()
-                        .HasForeignKey("testTypeNameNameId");
-                });
-
-            modelBuilder.Entity("InstaMedData.Models.Visit", b =>
-                {
-                    b.HasOne("InstaMedData.Models.ApplicationUser", "User")
-                        .WithMany("visit")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("TestUserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

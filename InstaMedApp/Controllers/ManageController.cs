@@ -11,8 +11,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using InstaMedApp.Models.ManageViewModels;
-using InstaMedApp.Services;
 using InstaMedData.Models;
+using InstaMedService;
+using InstaMedService.Services;
 
 namespace InstaMedApp.Controllers
 {

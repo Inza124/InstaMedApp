@@ -9,7 +9,8 @@ namespace InstaMedData.Models
         public int Id { get; set; }
         public String DoctorName { get; set; }
 
-        //public TSH TSHTest { get; set; }
+        public Visit visit { get; set; }
+        public TSH TSHTest { get; set; }
         //public Glucose GlucoseTest { get; set; }
         //public BetaHCG  BetaHCGTest{ get; set; }
         //public USG USGTest { get; set; }

@@ -1,0 +1,81 @@
+﻿@model InstaMedApp.Models.TestsViewModel
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+<script type="text/javascript">
+        $(document).ready(function () {
+            var items = "<option value='0'>Wybierz</option>";
+            $('#NameId').html(items);
+
+    });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#CategoryId').change(function () {
+                var url = '@Url.Content("~/")' + "Test/GetNames";
+                var ddlsource = "#CategoryId";
+                $.getJSON(url, { CategoryId: $(ddlsource).val() }, function (data) {
+                    var items = '';
+                    $("#NameId").empty();
+                    $.each(data, function (i, name) {
+                        items += "<option value='" + name.value + "'>" + name.text + "</option>";
+                    });
+                    $('#NameId').html(items);
+                });
+            });
+
+        });
+    </script>
+<h2>Create</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="alert-danger" asp-validation-summary="ModelOnly"></div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                        <label class="control-label">Kategoria</label>
+                        <select asp-for="CategoryId"
+                                class="form-control"
+                                asp-items="@(new SelectList(@ViewBag.ListofCategory,"CategoryId", "Category"))"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                        <label class="control-label">Badanie</label>
+                        <select class="form-control" id="NameId" name="NameId" asp-for="NameId"
+                                asp-items="@(new SelectList(string.Empty,"NameId", "Name"))"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

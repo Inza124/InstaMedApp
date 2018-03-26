@@ -11,9 +11,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using InstaMedApp.Models;
+using InstaMedService;
 using InstaMedApp.Models.AccountViewModels;
-using InstaMedApp.Services;
 using InstaMedData.Models;
+using InstaMedService.Services;
 
 namespace InstaMedApp.Controllers
 {

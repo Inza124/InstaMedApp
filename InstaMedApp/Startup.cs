@@ -9,9 +9,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using InstaMedApp.Models;
-using InstaMedApp.Services;
+using InstaMedService;
 using InstaMedData;
 using InstaMedData.Models;
+using InstaMedService.Services;
 
 namespace InstaMedApp
 {
@@ -36,6 +37,7 @@ namespace InstaMedApp
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
+            services.AddScoped<ITests, TestsService>();
 
             services.AddMvc();
         }

@@ -11,9 +11,10 @@ using System;
 namespace InstaMedData.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180325153946_edt#4")]
+    partial class edt4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -128,49 +129,49 @@ namespace InstaMedData.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<float>("Price");
+                    b.Property<double>("Price");
 
                     b.Property<int?>("VisitId");
 
-                    b.Property<int?>("testTypeCategoryCategoryId");
+                    b.Property<int?>("testTypeCategoryId");
 
-                    b.Property<int?>("testTypeNameNameId");
+                    b.Property<int?>("testTypeNameId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("VisitId");
 
-                    b.HasIndex("testTypeCategoryCategoryId");
+                    b.HasIndex("testTypeCategoryId");
 
-                    b.HasIndex("testTypeNameNameId");
+                    b.HasIndex("testTypeNameId");
 
                     b.ToTable("Tests");
                 });
 
             modelBuilder.Entity("InstaMedData.Models.TestTypeCategory", b =>
                 {
-                    b.Property<int>("CategoryId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Category");
 
-                    b.Property<int>("NameId");
-
-                    b.HasKey("CategoryId");
+                    b.HasKey("Id");
 
                     b.ToTable("TestTypeCategories");
                 });
 
             modelBuilder.Entity("InstaMedData.Models.TestTypeName", b =>
                 {
-                    b.Property<int>("NameId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<int>("CategoryId");
 
                     b.Property<string>("Name");
 
-                    b.HasKey("NameId");
+                    b.Property<int?>("categoryId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("categoryId");
 
                     b.ToTable("TestTypeNames");
                 });
@@ -337,11 +338,18 @@ namespace InstaMedData.Migrations
 
                     b.HasOne("InstaMedData.Models.TestTypeCategory", "testTypeCategory")
                         .WithMany()
-                        .HasForeignKey("testTypeCategoryCategoryId");
+                        .HasForeignKey("testTypeCategoryId");
 
                     b.HasOne("InstaMedData.Models.TestTypeName", "testTypeName")
                         .WithMany()
-                        .HasForeignKey("testTypeNameNameId");
+                        .HasForeignKey("testTypeNameId");
+                });
+
+            modelBuilder.Entity("InstaMedData.Models.TestTypeName", b =>
+                {
+                    b.HasOne("InstaMedData.Models.TestTypeCategory", "category")
+                        .WithMany()
+                        .HasForeignKey("categoryId");
                 });
 
             modelBuilder.Entity("InstaMedData.Models.Visit", b =>

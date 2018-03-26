@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace InstaMedApp.Services
+namespace InstaMedService
 {
     public interface IEmailSender
     {
