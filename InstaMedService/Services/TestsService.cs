@@ -16,6 +16,7 @@ namespace InstaMedService.Services
         {
             _context = context;
         }
+
         public IEnumerable<TestTypeCategory> AllTypes()
         {
             return _context.TestTypeCategories;
@@ -35,7 +36,9 @@ namespace InstaMedService.Services
 
         public IEnumerable<Test> GetAll()
         {
-            return _context.Tests.ToList();
+            return _context.Tests
+                .Include(h => h.testTypeCategory)
+                .Include(h => h.testTypeName).ToList();
         }
 
         public void Add(Test newTest)

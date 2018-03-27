@@ -13,5 +13,16 @@ namespace InstaMedData.Models
         public String Category { get; set; }
 
         public int NameId { get; set; }
+
+        public TestTypeCategory()
+        {
+
+        }
+        public TestTypeCategory(int CatId, String Cat, int namid)
+        {
+            CategoryId = CatId;
+            Category = Cat;
+            NameId = namid;
+        }
     }
 }

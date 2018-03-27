@@ -20,9 +20,11 @@ namespace InstaMedData
         public DbSet<Test> Tests { get; set; }
         public DbSet<Result> Results { get; set; }
         public DbSet<TSH> TSHs { get; set; }
+        public DbSet<T3T4> T3T4s { get; set; }
 
 
-      
+
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

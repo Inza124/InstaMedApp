@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Models\TestsViewModels\" />
     <Folder Include="wwwroot\dateTime\" />
   </ItemGroup>
 

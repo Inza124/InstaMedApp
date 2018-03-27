@@ -29,6 +29,7 @@ namespace InstaMedApp.Controllers
         {
             var model = new TestsViewModel();
             var list = _tests.AllTypes().ToList();
+            list.Insert(0,new TestTypeCategory(0, "Wybierz", 0));
             ViewBag.ListofCategory = list;
 
             return View(model);
@@ -53,7 +54,7 @@ namespace InstaMedApp.Controllers
                 test.testTypeName = _tests.GetNameById(intNameiD);
                 _tests.Add(test);
             }
-            var list = _tests.AllTypes();
+            var list = _tests.AllTypes().ToList();
             ViewBag.ListofCategory = list;
             return RedirectToAction("Index");
         }

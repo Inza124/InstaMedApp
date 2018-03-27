@@ -11,9 +11,10 @@ using System;
 namespace InstaMedData.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180327075856_edt#9")]
+    partial class edt9
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -119,20 +120,6 @@ namespace InstaMedData.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roles");
-                });
-
-            modelBuilder.Entity("InstaMedData.Models.T3T4", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<float>("T3Result");
-
-                    b.Property<float>("T4Result");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("T3T4s");
                 });
 
             modelBuilder.Entity("InstaMedData.Models.Test", b =>

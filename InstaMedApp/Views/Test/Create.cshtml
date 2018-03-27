@@ -7,7 +7,6 @@
         $(document).ready(function () {
             var items = "<option value='0'>Wybierz</option>";
             $('#NameId').html(items);
-
     });
     </script>
 
@@ -32,23 +31,23 @@
 
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-8">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="Price" class="control-label"></label>
                 <input asp-for="Price" class="form-control" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <div class="row">
                     <div class="alert-danger" asp-validation-summary="ModelOnly"></div>
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                    <div class="col-md-12">
                         <label class="control-label">Kategoria</label>
                         <select asp-for="CategoryId"
                                 class="form-control"
@@ -56,9 +55,9 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                    <div class="col-md-12">
                         <label class="control-label">Badanie</label>
                         <select class="form-control" id="NameId" name="NameId" asp-for="NameId"
                                 asp-items="@(new SelectList(string.Empty,"NameId", "Name"))"></select>
