@@ -55,6 +55,8 @@ namespace InstaMedData.Migrations
 
                     b.Property<string>("PasswordHash");
 
+                    b.Property<string>("Pesel");
+
                     b.Property<string>("PhoneNumber");
 
                     b.Property<bool>("PhoneNumberConfirmed");
@@ -205,6 +207,8 @@ namespace InstaMedData.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Status");
 
                     b.Property<string>("UserId");
 

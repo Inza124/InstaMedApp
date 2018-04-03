@@ -5,7 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using InstaMedApp.Models;
+using InstaMedData.Models;
 using InstaMedService;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace InstaMedApp.Controllers
 {
@@ -13,11 +16,15 @@ namespace InstaMedApp.Controllers
     {
         private IVisits _visits;
         private ITests _tests;
+        private UserManager<ApplicationUser> _user;
+        private List<Test> cart;
 
-        public VisitController(IVisits visits, ITests tests)
+        public VisitController(IVisits visits, ITests tests, UserManager<ApplicationUser> user)
         {
+            cart = new List<Test>();
             _visits = visits;
             _tests = tests;
+            _user = user;
         }
 
         public ActionResult Index()
@@ -35,6 +42,9 @@ namespace InstaMedApp.Controllers
         {
             var model = new VisitsViewModel();
             var testsList = _tests.GetAll();
+            var userId = _user.GetUserId(HttpContext.User);
+            ApplicationUser AppUser = _user.FindByIdAsync(userId).Result;
+            ViewBag.User = AppUser;
             ViewBag.TestList = testsList;
             return View(model);
         }
@@ -46,53 +56,29 @@ namespace InstaMedApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                Visit one = new Visit();
+                one.Status = "Oczekująca";
+                one.Tests = cart;
+                one.dateTime = model.Date;
+                one.User = _user.FindByIdAsync(_user.GetUserId(HttpContext.User)).Result;
+                _visits.Add(one);
 
             }
-            return RedirectToAction("Succes");
+            return RedirectToAction("Create");
         }
 
-        
-        public ActionResult Edit(int id)
+        public JsonResult AddToList(int id)
         {
-            return View();
+            var currentTest = _tests.GetAll().FirstOrDefault(j => j.Id == id);
+            cart.Add(currentTest);
+            return Json(currentTest);
         }
 
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public JsonResult Search(string request)
         {
-            try
-            {
-               
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var testsList = _tests.GetAll().ToList();
+            var newTestList = testsList.FindAll(x => x.Name.Contains(request));
+            return Json(newTestList);
         }
 
         public ActionResult Succes()

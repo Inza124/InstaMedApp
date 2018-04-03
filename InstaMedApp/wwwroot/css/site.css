@@ -33,3 +33,8 @@
         display: none;
     }
 }
+
+#pan {
+    padding: 10px;
+    color: cyan;
+}

@@ -10,6 +10,7 @@ namespace InstaMedApp.Models
     {
         public int Id { get; set; }
         public DateTime Date { get; set; }
+        public String Status { get; set; }
         public int UserId { get; set; }
         public List<Test> Tests { get; set; }
         public List<Result> Results { get; set; }

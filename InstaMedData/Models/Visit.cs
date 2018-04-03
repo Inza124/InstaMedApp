@@ -8,6 +8,7 @@ namespace InstaMedData.Models
     {
         public int Id { get; set; }
         public DateTime dateTime { get; set; }
+        public String Status { get; set; }
 
         public ApplicationUser User { get; set; }
         public ICollection<Test> Tests { get; set; }

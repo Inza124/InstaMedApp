@@ -22,6 +22,10 @@ namespace InstaMedApp.Models.AccountViewModels
         public string LastName { get; set; }
 
         [Required]
+        [Display(Name = "Pesel")]
+        public string Pesel { get; set; }
+
+        [Required]
         [Display(Name = "Phone Number")]
         public string Telephone { get; set; }
 

@@ -1,43 +1,167 @@
 ﻿@model InstaMedApp.Models.VisitsViewModel
 
 @{
-    ViewData["Title"] = "Create";
+	ViewData["Title"] = "Create";
 }
+<head>
+	<script src="~/jquery/jquery-1.8.3.min.js"></script>
+	<script src="~/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="~/bootstrap/css/bootstrap.min.css">
+	<script type="text/javascript" src="~/js/bootstrap-datetimepicker.js"></script>
+	<link rel="stylesheet" href="~/css/bootstrap-datetimepicker.min.css" />
+	<script type="text/javascript" src="~/js/locales/bootstrap-datetimepicker.pl.js" charset="UTF-8"></script>
+	<style>
+		#pan {
+			color: black;
+			padding: 5px;
+			padding-bottom: 20px;
+		}
 
-<h2>Create</h2>
+			#pan:hover {
+				background-color: mediumspringgreen
+			}
 
-<h4>VisitsViewModel</h4>
+		#testTable {
+			border: 1px ridge wheat
+		}
+	</style>
+</head>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.btn-cart').click(function () {
+            var myId = $(this).attr("data-id");
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("AddToList")',
+                dataType: 'json',
+                data: { 'id': myId },
+                success: function (data) {
+                    console.log(data);
+                    var rows = "<tr>"
+                        + "<td class='nameT'>" + data.name + "</td>"
+                        + "<td class='priceT'>" + data.price + " PLN" + "</td>"
+                        + "</tr>";
+                    $('#testTable tbody').append(rows);
+                    var table = document.getElementById("testTable"), sumVal = 0;
+
+                    for (var i = 1; i < table.rows.length; i++) {
+                        sumVal = sumVal + parseInt(table.rows[i].cells[1].innerHTML);
+                    }
+
+                    document.getElementById("sum").innerHTML = "" + sumVal + " PLN";
+                    console.log(sumVal);
+                },
+            });
+            return false;
+        });
+
+        $('#search').keyup(function () {
+            var input, filter, div, pan, a;
+            input = document.getElementById('search');
+            filter = input.value.toUpperCase();
+            div = document.getElementById('tests');
+            pan = document.getElementsByClassName('panelo');
+            for (i = 0; i < pan.length; i++) {
+                a = pan[i].getElementsByTagName("text")[0];
+                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    pan[i].style.display = "";
+                } else {
+                    pan[i].style.display = "none";
+                }
+            }
+        });
+
+	});
+</script>
+<script type="text/javascript">
+	var $j = jQuery.noConflict();
+	$j(document).ready(function () {
+		$j(".form_datetime").datetimepicker({
+			language: 'pl',
+			weekStart: 1,
+			todayBtn: 1,
+			autoclose: 1,
+			todayHighlight: 1,
+			startView: 2,
+			forceParse: 0,
+			showMeridian: 1
+		});
+	});
+</script>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
-                <span asp-validation-for="Id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
-                <input asp-for="Date" class="form-control" />
-                <span asp-validation-for="Date" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <input asp-for="UserId" class="form-control" />
-                <span asp-validation-for="UserId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
-    </div>
-</div>
+<form asp-action="Create">
+	<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+	<div class="col-md-3">
+		<h2>Wybierz date</h2>
+		<div class="form-group">
+			<label for="dtp_input1" class="control-label">Data</label>
+			<div class="input-group date form_datetime" data-date="@DateTime.Now" data-date-format="dd/MM/yyyy HH:mm:ss PP" data-link-field="dtp_input1">
+				<input asp-for="Date" class="form-control" size="16" type="text" value="" readonly>
+				<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+			</div>
+			<input type="hidden" id="dtp_input1" value="" /><br />
+		</div>
+		<h2>Potwierdź dane</h2>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+		<div class="form-group">
+			<label class="control-label">Imię</label>
+			<input type="text" class="form-control" value="@ViewBag.User.FirstName">
+			<label class="control-label">Nazwisko</label>
+			<input type="text" class="form-control" value="@ViewBag.User.LastName">
+			<label class="control-label">Telefon</label>
+			<input type="text" class="form-control" value="@ViewBag.User.Telephone">
+			<label class="control-label">Pesel</label>
+			<input type="text" class="form-control" value="@ViewBag.User.Pesel">
+			<span asp-validation-for="UserId" class="text-danger"></span>
+		</div>
+
+	</div>
+	<div class="col-md-5" style="border: 2px dotted  #ff9999">
+		<h2>Wybierz badania</h2>
+        <div class="input-group col-md-8">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+            <input id="search" type="text" class="form-control">
+        </div>
+		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+		<div id="tests" class="">
+			<br />
+			@{ var listTest = ViewBag.TestList;}
+			@foreach (var item in listTest)
+		{
+			<div id="pan" class="form-group panel panel-default panelo">
+				<p id="TestsId" class="hidden">@item.Id</p>
+				<text>@item.Name</text>
+
+				<text style="font-weight: bold; color: lightcoral">@item.testTypeName.Name</text>
+
+				<text style="font-weight: bold; color: darkred">Cena: @item.Price</text>
+				<button class="btn btn-sm btn-warning btn-cart" data-id="@item.Id" type="button" style="float:right">Dodaj</button>
+			</div>
+	}
+		</div>
+	</div>
+    <div class="col-md-4">
+        <h2>Dodane badania</h2>
+        <br />
+        <table id="testTable" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="nameT">Nazwa Badania</th>
+                    <th class="priceT">Cena Badania</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <p style="display:inline; font-weight:bold; font-size: 20px;">W sumie:</p>
+        <p style="display:inline; font-weight:bold; font-size: 20px; color:brown" id="sum"></p>
+
+        <br /> <br />
+        <div class="form-group">
+            <input type="submit" value="Zapisz się" class="btn btn-info btn-lg" />
+        </div>
+    </div>
+</form>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

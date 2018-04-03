@@ -38,7 +38,7 @@ namespace InstaMedService.Services
         {
             return _context.Tests
                 .Include(h => h.testTypeCategory)
-                .Include(h => h.testTypeName).ToList();
+                .Include(h => h.testTypeName);
         }
 
         public void Add(Test newTest)
