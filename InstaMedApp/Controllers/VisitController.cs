@@ -29,7 +29,8 @@ namespace InstaMedApp.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            var model = _visits.GetAllWaiting().ToList();
+            return View(model);
         }
 
 
