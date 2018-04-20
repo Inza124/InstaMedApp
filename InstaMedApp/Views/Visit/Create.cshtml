@@ -27,49 +27,49 @@
 	</style>
 </head>
 <script type="text/javascript">
-    $(document).ready(function () {
-        $('.btn-cart').click(function () {
-            var myId = $(this).attr("data-id");
-            $.ajax({
-                type: 'POST',
-                url: '@Url.Action("AddToList")',
-                dataType: 'json',
-                data: { 'id': myId },
-                success: function (data) {
-                    console.log(data);
-                    var rows = "<tr>"
-                        + "<td class='nameT'>" + data.name + "</td>"
-                        + "<td class='priceT'>" + data.price + " PLN" + "</td>"
-                        + "</tr>";
-                    $('#testTable tbody').append(rows);
-                    var table = document.getElementById("testTable"), sumVal = 0;
+	$(document).ready(function () {
+		$('.btn-cart').click(function () {
+			var myId = $(this).attr("data-id");
+			$.ajax({
+				type: 'POST',
+				url: '@Url.Action("AddToList")',
+				dataType: 'json',
+				data: { 'id': myId },
+				success: function (data) {
+					console.log(data);
+					var rows = "<tr>"
+						+ "<td class='nameT'>" + data.name + "</td>"
+						+ "<td class='priceT'>" + data.price + " PLN" + "</td>"
+						+ "</tr>";
+					$('#testTable tbody').append(rows);
+					var table = document.getElementById("testTable"), sumVal = 0;
 
-                    for (var i = 1; i < table.rows.length; i++) {
-                        sumVal = sumVal + parseInt(table.rows[i].cells[1].innerHTML);
-                    }
+					for (var i = 1; i < table.rows.length; i++) {
+						sumVal = sumVal + parseInt(table.rows[i].cells[1].innerHTML);
+					}
 
-                    document.getElementById("sum").innerHTML = "" + sumVal + " PLN";
-                    console.log(sumVal);
-                },
-            });
-            return false;
-        });
+					document.getElementById("sum").innerHTML = "" + sumVal + " PLN";
+					console.log(sumVal);
+				},
+			});
+			return false;
+		});
 
-        $('#search').keyup(function () {
-            var input, filter, div, pan, a;
-            input = document.getElementById('search');
-            filter = input.value.toUpperCase();
-            div = document.getElementById('tests');
-            pan = document.getElementsByClassName('panelo');
-            for (i = 0; i < pan.length; i++) {
-                a = pan[i].getElementsByTagName("text")[0];
-                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                    pan[i].style.display = "";
-                } else {
-                    pan[i].style.display = "none";
-                }
-            }
-        });
+		$('#search').keyup(function () {
+			var input, filter, div, pan, a;
+			input = document.getElementById('search');
+			filter = input.value.toUpperCase();
+			div = document.getElementById('tests');
+			pan = document.getElementsByClassName('panelo');
+			for (i = 0; i < pan.length; i++) {
+				a = pan[i].getElementsByTagName("text")[0];
+				if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+					pan[i].style.display = "";
+				} else {
+					pan[i].style.display = "none";
+				}
+			}
+		});
 
 	});
 </script>
@@ -118,10 +118,10 @@
 	</div>
 	<div class="col-md-5" style="border: 2px dotted  #ff9999">
 		<h2>Wybierz badania</h2>
-        <div class="input-group col-md-8">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-            <input id="search" type="text" class="form-control">
-        </div>
+		<div class="input-group col-md-8">
+			<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+			<input id="search" type="text" class="form-control">
+		</div>
 		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 		<div id="tests" class="" style="overflow-y: scroll; height:400px;">
 			<br />
@@ -140,26 +140,26 @@
 	}
 		</div>
 	</div>
-    <div class="col-md-4">
-        <h2>Dodane badania</h2>
-        <br />
-        <table id="testTable" class="table table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th class="nameT">Nazwa Badania</th>
-                    <th class="priceT">Cena Badania</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-        <p style="display:inline; font-weight:bold; font-size: 20px;">W sumie:</p>
-        <p style="display:inline; font-weight:bold; font-size: 20px; color:brown" id="sum"></p>
+	<div class="col-md-4">
+		<h2>Dodane badania</h2>
+		<br />
+		<table id="testTable" class="table table-bordered table-hover">
+			<thead>
+				<tr>
+					<th class="nameT">Nazwa Badania</th>
+					<th class="priceT">Cena Badania</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+		<p style="display:inline; font-weight:bold; font-size: 20px;">W sumie:</p>
+		<p style="display:inline; font-weight:bold; font-size: 20px; color:brown" id="sum"></p>
 
-        <br /> <br />
-        <div class="form-group">
-            <input type="submit" value="Zapisz się" class="btn btn-info btn-lg" />
-        </div>
-    </div>
+		<br /> <br />
+		<div class="form-group">
+			<input type="submit" value="Zapisz się" class="btn btn-info btn-lg" />
+		</div>
+	</div>
 </form>
 
 @section Scripts {

@@ -24,7 +24,7 @@ namespace InstaMedService.Services
 
         public IEnumerable<Visit> GetAll()
         {
-            return _context.Visits;
+            return _context.Visits.Include(h => h.User);
         }
 
         public IEnumerable<Visit> GetAllFinalized()
@@ -39,7 +39,15 @@ namespace InstaMedService.Services
 
         public Visit GetById(int id)
         {
-            throw new NotImplementedException();
+            return GetAll().FirstOrDefault(h => h.Id == id);
+        }
+
+        public void SetStatus(Visit visit, string status)
+        {
+            var model = visit;
+            model.Status = status;
+            _context.Entry(visit).CurrentValues.SetValues(model);
+            _context.SaveChanges();
         }
     }
 }

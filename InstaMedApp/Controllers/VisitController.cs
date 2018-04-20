@@ -29,7 +29,7 @@ namespace InstaMedApp.Controllers
 
         public ActionResult Index()
         {
-            var model = _visits.GetAllWaiting().ToList();
+            var model = _visits.GetAll().ToList();
             return View(model);
         }
 
@@ -66,6 +66,40 @@ namespace InstaMedApp.Controllers
 
             }
             return RedirectToAction("Create");
+        }
+
+
+        public ActionResult Realize(int id)
+        {
+            Visit visit = _visits.GetById(id);
+            if (visit != null)
+            {
+                _visits.SetStatus(visit, "Zrealizowana");
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+        public ActionResult Archive(int id)
+        {
+            Visit visit = _visits.GetById(id);
+            if (visit != null)
+            {
+                _visits.SetStatus(visit, "Zarchiwizowana");
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+        public ActionResult BringBack(int id)
+        {
+            Visit visit = _visits.GetById(id);
+            if (visit != null)
+            {
+                _visits.SetStatus(visit, "Oczekująca");
+                return RedirectToAction("Index");
+            }
+            return View();
         }
 
         public JsonResult AddToList(int id)

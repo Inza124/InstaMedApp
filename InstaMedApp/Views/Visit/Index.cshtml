@@ -1,44 +1,105 @@
 ﻿@model IEnumerable<InstaMedData.Models.Visit>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
     ViewData["Title"] = "Index";
 }
+
+<script>
+    function DateRange(value) {
+        var date;
+        date = document.getElementById("dateInput");
+        table = document.getElementById("myTable");
+        tr = document.getElementsByTagName("tr");
+
+    }
+
+    function StatusFilter(value) {
+        var filter, table, tr, td, i;
+        var input = value;
+        filter = input.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
 
 <h2>Index</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<div class="btn-group">
+    <button class="btn btn btn-group-sm btn-warning" onclick="StatusFilter('')">Wszystkie</button>
+    <button class="btn btn btn-group-sm btn-warning" onclick="StatusFilter('Oczekująca')">Oczekujące</button>
+    <button class="btn btn btn-group-sm btn-warning" onclick="StatusFilter('Zrealizowana')">Zrealizowane</button>
+    <button class="btn btn btn-group-sm btn-warning" onclick="StatusFilter('Zarchiwizowana')">Zarchiwizowane</button>
+</div>
+<input id="dateFilter" type="text" class="form-control">
+
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.dateTime)
-                </th>
-                <th>
-                    Zapisany klient
-                </th>
-                <th>@Html.DisplayNameFor(model => model.Status)</th>
+            <th>
+                Data wizyty
+            </th>
+            <th>
+                Zapisany klient
+            </th>
+            <th>@Html.DisplayNameFor(model => model.Status)</th>
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.dateTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.FirstName) @Html.DisplayFor(modelItem => item.User.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+    <tbody id="myTable">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.FirstName) @Html.DisplayFor(modelItem => item.User.LastName)
+                </td>
+                <td>
+                    @if (item.Status == "Oczekująca")
+                    {
+                        <p style="color: darkgoldenrod; font-weight:bold">@Html.DisplayFor(modelItem => item.Status)</p>
+                    }
+                    @if (item.Status == "Zrealizowana")
+                    {
+                        <p style="color: dodgerblue; font-weight:bold">@Html.DisplayFor(modelItem => item.Status)</p>
+                    }
+                    @if (item.Status == "Zarchiwizowana")
+                    {
+                        <p style="color: red; font-weight:bold">@Html.DisplayFor(modelItem => item.Status)</p>
+                    }
+                </td>
+                <td>
+                    @if (item.Status == "Oczekująca")
+                    {
+                        <button type="button" class="btn btn-sm btn-primary" onclick="location.href='@Url.Action("Realize", "Visit", new {id = item.Id })'"> Zrealizuj</button>
+                    }
+                    @if (item.Status == "Zrealizowana")
+                    {
+                        <button class="btn btn-sm btn-danger " asp-action="setResult" asp-route-id="@item.Id">Wystaw wynik</button>
+                    }
+                    @if (item.Status == "Zarchiwizowana")
+                    {
+                        <button type="button" class="btn btn-sm btn-primary" onclick="location.href='@Url.Action("BringBack", "Visit", new {id = item.Id })'"> Przywróć</button>
+                    }
+                    <button type="button" class="btn btn-sm btn-info" onclick="location.href='@Url.Action("Archive", "Visit", new {id = item.Id })'"> Archiwizuj</button>
+                    <button type="button" class="btn btn-sm btn-default" onclick="location.href='@Url.Action("Archive", "Visit", new {id = item.Id })'"> Szczegóły</button>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
