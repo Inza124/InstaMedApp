@@ -7,6 +7,7 @@ using InstaMedApp.Models;
 using System.Dynamic;
 using InstaMedService;
 using Microsoft.AspNetCore.Mvc;
+using InstaMedApp.Extensions;
 
 namespace InstaMedApp.Controllers
 {
@@ -21,7 +22,6 @@ namespace InstaMedApp.Controllers
             _visits = visits;
             _tests = tests;
             _result = result;
-            VisitBackup = new Visit();
         }
 
         public IActionResult Create(int id)
@@ -45,9 +45,8 @@ namespace InstaMedApp.Controllers
         public IActionResult ChooseRes(int id)
         {
             var currentVisit = _visits.GetById(id);
-            VisitBackup = currentVisit;
             var currentVisitTests = _result.GetTestsByVisit(currentVisit);
-            ViewBag.Visits = currentVisit;
+            CartHelper.SetVisitId(currentVisit.Id);
             return View(currentVisitTests);
         }
 
@@ -66,18 +65,18 @@ namespace InstaMedApp.Controllers
             {
                 Result one = new Result();
 
-                if (model_TSH != null)
+                if (model_TSH.Type == "TSH")
                 {
                     one.DoctorName = model_TSH.DocName;
                     one.TSHTest = model_TSH;
                 }
 
-                if (model_T3T4 != null)
+                if (model_T3T4.Type == "T3T4")
                 {
                     one.DoctorName = model_T3T4.DocName;
                     one.T3T4Test = model_T3T4;
                 }
-                one.visit = VisitBackup;
+                one.visit = _visits.GetById(CartHelper.GetVisitId());
                 _result.Add(one);
             }
             return RedirectToAction("Index");

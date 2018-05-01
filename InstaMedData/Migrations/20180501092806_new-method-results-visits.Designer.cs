@@ -11,9 +11,10 @@ using System;
 namespace InstaMedData.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180501092806_new-method-results-visits")]
+    partial class newmethodresultsvisits
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -100,7 +101,7 @@ namespace InstaMedData.Migrations
 
                     b.Property<int?>("TSHTestId");
 
-                    b.Property<int?>("visitId");
+                    b.Property<int>("visitId");
 
                     b.HasKey("Id");
 
@@ -372,9 +373,10 @@ namespace InstaMedData.Migrations
                         .WithMany()
                         .HasForeignKey("TSHTestId");
 
-                    b.HasOne("InstaMedData.Models.Visit", "visit")
+                    b.HasOne("InstaMedData.Models.Visit")
                         .WithMany("TestResults")
-                        .HasForeignKey("visitId");
+                        .HasForeignKey("visitId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("InstaMedData.Models.Temp", b =>

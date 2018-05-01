@@ -9,5 +9,10 @@ namespace InstaMedData.Models
         public int Id { get; set; }
         public double TSHResult { get; set; }
         public string DocName { get; set; }
+        public string Type { get; set; }
+        public TSH()
+        {
+            Type = "TSH";
+        }
     }
 }

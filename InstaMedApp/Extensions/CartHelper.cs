@@ -10,6 +10,7 @@ namespace InstaMedApp.Extensions
     {
         private static List<Test> cart;
         private static List<Temp> testsId;
+        private static int VisitId;
         static CartHelper()
         {
             cart = new List<Test>();
@@ -28,6 +29,21 @@ namespace InstaMedApp.Extensions
         public static List<Temp> GetCart()
         {
             return testsId;
+        }
+
+        public static void SetVisitId(int id)
+        {
+            VisitId = id;
+        }
+
+        public static int GetVisitId()
+        {
+            return VisitId;
+        }
+
+        public static void ResetVisitId()
+        {
+            VisitId = 0;
         }
     }
 }
