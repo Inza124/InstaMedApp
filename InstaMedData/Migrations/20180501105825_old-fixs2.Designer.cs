@@ -11,9 +11,10 @@ using System;
 namespace InstaMedData.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180501105825_old-fixs2")]
+    partial class oldfixs2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -220,7 +221,7 @@ namespace InstaMedData.Migrations
 
                     b.Property<string>("DocName");
 
-                    b.Property<decimal>("TSHResult");
+                    b.Property<float>("TSHResult");
 
                     b.Property<bool>("isTSH");
 

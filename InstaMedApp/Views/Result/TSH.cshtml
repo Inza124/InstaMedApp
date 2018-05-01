@@ -6,12 +6,13 @@
 <h4>Badanie TSH</h4>
 <hr />
 <div class="row">
+    
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 Wynik badania TSH:
-                <input asp-for="TSHResult" class="form-control" />
+                <input asp-for="TSHResult" class="form-control"/>
                 <span asp-validation-for="TSHResult" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -19,6 +20,8 @@
                 <input asp-for="DocName" class="form-control" />
                 <span asp-validation-for="DocName" class="text-danger"></span>
             </div>
+            @Html.CheckBoxFor(model => model.isTSH) Poprawnie wykonane badanie?
+            <br>
             <div class="form-group">
                 <input type="submit" value="Dodaj" class="btn btn-default" />
             </div>

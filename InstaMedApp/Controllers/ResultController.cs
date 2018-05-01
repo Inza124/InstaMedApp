@@ -16,7 +16,6 @@ namespace InstaMedApp.Controllers
         private IVisits _visits;
         private ITests _tests;
         private IResult _result;
-        private Visit VisitBackup;
         public ResultController(IVisits visits, ITests tests, IResult result)
         {
             _visits = visits;
@@ -52,7 +51,7 @@ namespace InstaMedApp.Controllers
 
         public ActionResult TSH(int id)
         {
-             var model = new TSH();
+             var model = new TSH { isTSH = false };
              return View(model);
         }
 
@@ -65,13 +64,13 @@ namespace InstaMedApp.Controllers
             {
                 Result one = new Result();
 
-                if (model_TSH.Type == "TSH")
+                if (model_TSH.isTSH == true)
                 {
                     one.DoctorName = model_TSH.DocName;
                     one.TSHTest = model_TSH;
                 }
 
-                if (model_T3T4.Type == "T3T4")
+                if (model_T3T4.isT3T4 == true)
                 {
                     one.DoctorName = model_T3T4.DocName;
                     one.T3T4Test = model_T3T4;
