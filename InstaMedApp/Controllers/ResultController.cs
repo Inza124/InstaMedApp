@@ -34,6 +34,10 @@ namespace InstaMedApp.Controllers
             {
                 return RedirectToAction("TSH");
             }
+            if (test.Name == "Badanie poziomu T3 i T4")
+            {
+                return RedirectToAction("T3T4");
+            }
             return RedirectToAction("ChooseRes");
         }
         public IActionResult Index()
@@ -53,6 +57,12 @@ namespace InstaMedApp.Controllers
         {
              var model = new TSH { isTSH = false };
              return View(model);
+        }
+
+        public ActionResult T3T4(int id)
+        {
+            var model = new T3T4 { isT3T4 = false };
+            return View(model);
         }
 
 
