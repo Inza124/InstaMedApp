@@ -7,8 +7,7 @@ namespace InstaMedData.Models
 {
     public class TestTypeCategory
     {
-        [Key]
-        public int CategoryId { get; set; }
+        public int Id { get; set; }
 
         public String Category { get; set; }
 
@@ -20,7 +19,7 @@ namespace InstaMedData.Models
         }
         public TestTypeCategory(int CatId, String Cat, int namid)
         {
-            CategoryId = CatId;
+            Id = CatId;
             Category = Cat;
             NameId = namid;
         }

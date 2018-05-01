@@ -11,9 +11,10 @@ using System;
 namespace InstaMedData.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180426144001_ehhhhh")]
+    partial class ehhhhh
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -132,8 +133,6 @@ namespace InstaMedData.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("DocName");
-
                     b.Property<float>("T3Result");
 
                     b.Property<float>("T4Result");
@@ -143,7 +142,7 @@ namespace InstaMedData.Migrations
                     b.ToTable("T3T4s");
                 });
 
-            modelBuilder.Entity("InstaMedData.Models.Temp", b =>
+            modelBuilder.Entity("InstaMedData.Models.TempId", b =>
                 {
                     b.Property<int>("PrimId")
                         .ValueGeneratedOnAdd();
@@ -152,13 +151,11 @@ namespace InstaMedData.Migrations
 
                     b.Property<int?>("VisitId");
 
-                    b.Property<bool>("isDone");
-
                     b.HasKey("PrimId");
 
                     b.HasIndex("VisitId");
 
-                    b.ToTable("Temps");
+                    b.ToTable("TempIds");
                 });
 
             modelBuilder.Entity("InstaMedData.Models.Test", b =>
@@ -215,8 +212,6 @@ namespace InstaMedData.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<string>("DocName");
 
                     b.Property<double>("TSHResult");
 
@@ -373,7 +368,7 @@ namespace InstaMedData.Migrations
                         .HasForeignKey("visitId");
                 });
 
-            modelBuilder.Entity("InstaMedData.Models.Temp", b =>
+            modelBuilder.Entity("InstaMedData.Models.TempId", b =>
                 {
                     b.HasOne("InstaMedData.Models.Visit")
                         .WithMany("TestsId")

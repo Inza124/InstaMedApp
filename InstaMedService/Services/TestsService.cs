@@ -59,12 +59,17 @@ namespace InstaMedService.Services
 
         public TestTypeCategory GetCategoryById(int id)
         {
-            return AllTypes().FirstOrDefault(catID => catID.CategoryId == id);
+            return AllTypes().FirstOrDefault(catID => catID.Id == id);
         }
 
         public TestTypeName GetNameById(int id)
         {
-            return AllNames().FirstOrDefault(name => name.NameId == id);
+            return AllNames().FirstOrDefault(name => name.Id == id);
+        }
+
+        public Test GetTestById(int id)
+        {
+            return _context.Tests.FirstOrDefault(i => i.Id == id);
         }
     }
 }

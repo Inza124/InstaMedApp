@@ -11,7 +11,7 @@ namespace InstaMedData.Models
         public String Status { get; set; }
 
         public ApplicationUser User { get; set; }
-        public ICollection<Test> Tests { get; set; }
+        public List<Temp> TestsId { get; set; }
         public ICollection<Result> TestResults { get; set; }
     }
 }

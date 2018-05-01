@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using InstaMedApp.Models;
 using InstaMedData.Models;
 using InstaMedService;
+using InstaMedApp.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -17,11 +18,9 @@ namespace InstaMedApp.Controllers
         private IVisits _visits;
         private ITests _tests;
         private UserManager<ApplicationUser> _user;
-        private List<Test> cart;
 
         public VisitController(IVisits visits, ITests tests, UserManager<ApplicationUser> user)
         {
-            cart = new List<Test>();
             _visits = visits;
             _tests = tests;
             _user = user;
@@ -59,11 +58,11 @@ namespace InstaMedApp.Controllers
             {
                 Visit one = new Visit();
                 one.Status = "Oczekująca";
-                one.Tests = cart;
+                one.TestsId = CartHelper.GetCart();
                 one.dateTime = model.Date;
                 one.User = _user.FindByIdAsync(_user.GetUserId(HttpContext.User)).Result;
                 _visits.Add(one);
-
+                CartHelper.ResetCart();
             }
             return RedirectToAction("Create");
         }
@@ -105,7 +104,7 @@ namespace InstaMedApp.Controllers
         public JsonResult AddToList(int id)
         {
             var currentTest = _tests.GetAll().FirstOrDefault(j => j.Id == id);
-            cart.Add(currentTest);
+            CartHelper.AddToCart(currentTest);
             return Json(currentTest);
         }
 

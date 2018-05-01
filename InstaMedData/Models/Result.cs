@@ -11,6 +11,7 @@ namespace InstaMedData.Models
 
         public Visit visit { get; set; }
         public TSH TSHTest { get; set; }
+        public T3T4 T3T4Test { get; set; }
         //public Glucose GlucoseTest { get; set; }
         //public BetaHCG  BetaHCGTest{ get; set; }
         //public USG USGTest { get; set; }

@@ -11,9 +11,10 @@ using System;
 namespace InstaMedData.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180426144316_refactor")]
+    partial class refactor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -132,8 +133,6 @@ namespace InstaMedData.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("DocName");
-
                     b.Property<float>("T3Result");
 
                     b.Property<float>("T4Result");
@@ -151,8 +150,6 @@ namespace InstaMedData.Migrations
                     b.Property<int>("Id");
 
                     b.Property<int?>("VisitId");
-
-                    b.Property<bool>("isDone");
 
                     b.HasKey("PrimId");
 
@@ -215,8 +212,6 @@ namespace InstaMedData.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<string>("DocName");
 
                     b.Property<double>("TSHResult");
 

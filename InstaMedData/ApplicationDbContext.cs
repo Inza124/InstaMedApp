@@ -15,6 +15,7 @@ namespace InstaMedData
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public new DbSet<Role> Roles { get; set; }
         public DbSet<Visit> Visits { get; set; }
+        public DbSet<Temp> Temps { get; set; }
         public DbSet<TestTypeName> TestTypeNames { get; set; }
         public DbSet<TestTypeCategory> TestTypeCategories { get; set; }
         public DbSet<Test> Tests { get; set; }
@@ -23,12 +24,10 @@ namespace InstaMedData
         public DbSet<T3T4> T3T4s { get; set; }
 
 
-
-
-
-        protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(builder);
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

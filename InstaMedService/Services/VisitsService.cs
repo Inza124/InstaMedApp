@@ -24,7 +24,9 @@ namespace InstaMedService.Services
 
         public IEnumerable<Visit> GetAll()
         {
-            return _context.Visits.Include(h => h.User);
+            return _context.Visits
+                .Include(h => h.User)
+                .Include(i => i.TestsId);
         }
 
         public IEnumerable<Visit> GetAllFinalized()

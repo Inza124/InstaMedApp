@@ -37,8 +37,9 @@ namespace InstaMedApp
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
-            services.AddScoped<ITests, TestsService>();
-            services.AddScoped<IVisits, VisitsService>();
+            services.AddTransient<ITests, TestsService>();
+            services.AddTransient<IVisits, VisitsService>();
+            services.AddTransient<IResult, ResultService>();
 
             services.AddMvc();
         }

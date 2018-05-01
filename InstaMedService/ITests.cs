@@ -12,6 +12,7 @@ namespace InstaMedService
         IEnumerable<TestTypeName> AllNames();
         TestTypeCategory GetCategoryById(int id);
         TestTypeName GetNameById(int id);
+        Test GetTestById(int id);
         IEnumerable<TestTypeName> AllNamesWithCat(int CategoryID);
         IEnumerable<String> TypeCategories();
         TestTypeName GetTestByName(String name);

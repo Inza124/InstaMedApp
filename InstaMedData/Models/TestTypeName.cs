@@ -7,8 +7,7 @@ namespace InstaMedData.Models
 {
     public class TestTypeName
     {
-        [Key]
-        public int NameId { get; set; }
+        public int Id { get; set; }
 
         public String Name { get; set; }
 

@@ -9,5 +9,6 @@ namespace InstaMedData.Models
         public int Id { get; set; }
         public float T3Result { get; set; }
         public float T4Result { get; set; }
+        public String DocName { get; set; }
     }
 }
