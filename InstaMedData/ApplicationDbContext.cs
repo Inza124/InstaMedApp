@@ -22,7 +22,20 @@ namespace InstaMedData
         public DbSet<Result> Results { get; set; }
         public DbSet<TSH> TSHs { get; set; }
         public DbSet<T3T4> T3T4s { get; set; }
-
+        public DbSet<USGPiersi> USGPiersis { get; set; }
+        public DbSet<USGSerca> USGSercas { get; set; }
+        public DbSet<USGSzyi> USGSzyis { get; set; }
+        public DbSet<Morf> Morves { get; set; }
+        public DbSet<Morf5> Morves5 { get; set; }
+        public DbSet<Mocz> Moczs { get; set; }
+        public DbSet<Glukoza> Glukozas { get; set; }
+        public DbSet<Krzywa> Krzywas { get; set; }
+        public DbSet<BetaHCG> BetaHCGs { get; set; }
+        public DbSet<Estrogen> Estrogens { get; set; }
+        public DbSet<OGTT> OGTTs { get; set; }
+        public DbSet<Progesteron> Progesterons { get; set; }
+        public DbSet<Szpik> Szpiks { get; set; }
+             
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
