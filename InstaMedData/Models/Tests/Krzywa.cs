@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace InstaMedData
+namespace InstaMedData.Models
 {
     public class Krzywa
     {

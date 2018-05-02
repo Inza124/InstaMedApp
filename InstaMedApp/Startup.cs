@@ -14,6 +14,7 @@ using InstaMedData;
 using InstaMedData.Models;
 using InstaMedService.Services;
 using Microsoft.AspNetCore.Localization;
+using System.Globalization;
 
 namespace InstaMedApp
 {
@@ -58,11 +59,13 @@ namespace InstaMedApp
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
+            var cultureInfo = new CultureInfo("en-US");
+            CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+            CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
             app.UseRequestLocalization(new RequestLocalizationOptions
             {
                 DefaultRequestCulture = new RequestCulture("en-US")
-            });
+        });
             app.UseStaticFiles();
 
             app.UseAuthentication();

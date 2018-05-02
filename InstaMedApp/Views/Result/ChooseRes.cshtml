@@ -22,23 +22,72 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.testTypeName.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.testTypeCategory.Category)
-            </td>
-            <td>
-                
-                <button type="button" class="btn btn-sm btn-primary" onclick="location.href='@Url.Action("Create", "Result", new {id = item.Id })'">Wystaw wynik</button>
-                <button type="button" class="btn btn-sm btn-primary" onclick="location.href='@Url.Action("Result", "Result", new {id = item.Id })'">Zgłoś nieprawidłowość</button>
-</td>
-        </tr>
-}
+        @{ int i = 0;}
+        @if (ViewBag.Result != null)
+        {
+
+            @foreach (var item in Model)
+            {
+                i = 0;
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.testTypeName.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.testTypeCategory.Category)
+                    </td>
+                    <td>
+
+
+                        @foreach (var result in ViewBag.Result)
+                        {
+                            if (result.ResultType == item.Name)
+                            {
+                                <p style="font-weight:bold; color:dodgerblue;">Wynik dodany</p>
+                                i = 1;
+                            }
+
+                        }
+                        @if (i == 0)
+                        {
+                        <button type="button" class="btn btn-sm btn-primary" onclick="location.href='@Url.Action("Create", "Result", new { id = item.Id })'">Wystaw wynik</button>
+                        <button type="button" class="btn btn-sm btn-primary" onclick="location.href='@Url.Action("Result", "Result", new { id = item.Id })'">Zgłoś nieprawidłowość</button>
+                        }
+
+
+                    </td>
+                </tr>
+
+
+            }
+        }
+        else if (ViewBag.Result == null)
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.testTypeName.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.testTypeCategory.Category)
+                    </td>
+                    <td>
+
+                        <button type="button" class="btn btn-sm btn-primary" onclick="location.href='@Url.Action("Create", "Result", new { id = item.Id })'">Wystaw wynik</button>
+                        <button type="button" class="btn btn-sm btn-primary" onclick="location.href='@Url.Action("Result", "Result", new { id = item.Id })'">Zgłoś nieprawidłowość</button>
+                    </td>
+                </tr>
+
+            }
+        }
+
     </tbody>
 </table>

@@ -29,6 +29,7 @@
   <ItemGroup>
     <Folder Include="Models\TestsViewModels\" />
     <Folder Include="wwwroot\dateTime\" />
+    <Folder Include="wwwroot\uploads\img\" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>

@@ -32,6 +32,7 @@ namespace InstaMedData
         public DbSet<Krzywa> Krzywas { get; set; }
         public DbSet<BetaHCG> BetaHCGs { get; set; }
         public DbSet<Estrogen> Estrogens { get; set; }
+        public DbSet<Testosteron> Testosterons { get; set; }
         public DbSet<OGTT> OGTTs { get; set; }
         public DbSet<Progesteron> Progesterons { get; set; }
         public DbSet<Szpik> Szpiks { get; set; }

@@ -9,6 +9,7 @@ namespace InstaMedData.Models
     public class Morf
     {
         public int Id { get; set; }
+        public String DocName { get; set; }
         [DisplayName("Erytrocyty")]
         public decimal RBCResult { get; set; }
         [DisplayName("Leukocyty")]

@@ -1,0 +1,64 @@
+﻿@model InstaMedData.Models.Mocz
+
+@{
+    ViewData["Title"] = "Mocz";
+}
+
+<h2>Badanie Moczu</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                Pracownik potwierdzający badanie:
+                <input asp-for="DocName" class="form-control" />
+                <span asp-validation-for="DocName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nablonki" class="control-label"></label>
+                <input asp-for="Nablonki" class="form-control" />
+                <span asp-validation-for="Nablonki" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KrwB" class="control-label"></label>
+                <input asp-for="KrwB" class="form-control" />
+                <span asp-validation-for="KrwB" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KrwCz" class="control-label"></label>
+                <input asp-for="KrwCz" class="form-control" />
+                <span asp-validation-for="KrwCz" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sluz" class="control-label"></label>
+                <input asp-for="Sluz" class="form-control" />
+                <span asp-validation-for="Sluz" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bakterie" class="control-label"></label>
+                <input asp-for="Bakterie" class="form-control" />
+                <span asp-validation-for="Bakterie" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="isMocz" /> Czy badanie zostało wykonane poprawnie?
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Dodaj" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Wracaj do listy</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

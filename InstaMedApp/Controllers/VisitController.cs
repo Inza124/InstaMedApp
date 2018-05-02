@@ -54,8 +54,7 @@ namespace InstaMedApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(VisitsViewModel model)
         {
-            if (ModelState.IsValid)
-            {
+                model.Date = model.Date.ToUniversalTime();
                 Visit one = new Visit();
                 one.Status = "Oczekująca";
                 one.TestsId = CartHelper.GetCart();
@@ -63,7 +62,7 @@ namespace InstaMedApp.Controllers
                 one.User = _user.FindByIdAsync(_user.GetUserId(HttpContext.User)).Result;
                 _visits.Add(one);
                 CartHelper.ResetCart();
-            }
+            
             return RedirectToAction("Create");
         }
 

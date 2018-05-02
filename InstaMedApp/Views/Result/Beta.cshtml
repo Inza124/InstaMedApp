@@ -1,10 +1,10 @@
-﻿@model InstaMedData.Models.T3T4
+﻿@model InstaMedData.Models.BetaHCG
 
 @{
-    ViewData["Title"] = "T3T4";
+    ViewData["Title"] = "Beta";
 }
 
-<h2>Wynik T3/T4</h2>
+<h2>Pomiar BetaHCG</h2>
 
 <hr />
 <div class="row">
@@ -12,14 +12,9 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                Wynik pomiaru T3:
-                <input asp-for="T3Result" class="form-control" />
-                <span asp-validation-for="T3Result" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                Wynik pomiaru T4:
-                <input asp-for="T4Result" class="form-control" />
-                <span asp-validation-for="T4Result" class="text-danger"></span>
+                BetaHCG:
+                <input asp-for="BetaHCGResult" class="form-control" />
+                <span asp-validation-for="BetaHCGResult" class="text-danger"></span>
             </div>
             <div class="form-group">
                 Pracownik zatwierdzający badanie:
@@ -29,7 +24,7 @@
             <div class="form-group">
                 <div class="checkbox">
                     <label>
-                        <input asp-for="isT3T4" /> Czy badanie zostało wykonane poprawnie?
+                        <input asp-for="isBeta" /> Czy badanie zostało wykonane poprawnie?
                     </label>
                 </div>
             </div>

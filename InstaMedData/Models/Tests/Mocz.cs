@@ -8,6 +8,7 @@ namespace InstaMedData.Models
     public class Mocz
     {
         public int Id { get; set; }
+        public String DocName { get; set; }
         [DisplayName("Nabłonki płaskie")]
         public decimal Nablonki { get; set; }
         [DisplayName("Białe krwinki")]

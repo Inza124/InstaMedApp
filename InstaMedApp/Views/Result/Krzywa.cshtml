@@ -1,10 +1,10 @@
-﻿@model InstaMedData.Models.T3T4
+﻿@model InstaMedData.Models.Krzywa
 
 @{
-    ViewData["Title"] = "T3T4";
+    ViewData["Title"] = "Krzywa";
 }
 
-<h2>Wynik T3/T4</h2>
+<h2>Badanie Krzywej Cukrowej</h2>
 
 <hr />
 <div class="row">
@@ -12,14 +12,19 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                Wynik pomiaru T3:
-                <input asp-for="T3Result" class="form-control" />
-                <span asp-validation-for="T3Result" class="text-danger"></span>
+                Pierwszy pomiar:
+                <input asp-for="FirstGlu" class="form-control" />
+                <span asp-validation-for="FirstGlu" class="text-danger"></span>
             </div>
             <div class="form-group">
-                Wynik pomiaru T4:
-                <input asp-for="T4Result" class="form-control" />
-                <span asp-validation-for="T4Result" class="text-danger"></span>
+                Drugi pomiar:
+                <input asp-for="SecondGlu" class="form-control" />
+                <span asp-validation-for="SecondGlu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                Trzeci pomiar:
+                <input asp-for="ThirdGlu" class="form-control" />
+                <span asp-validation-for="ThirdGlu" class="text-danger"></span>
             </div>
             <div class="form-group">
                 Pracownik zatwierdzający badanie:
@@ -29,7 +34,7 @@
             <div class="form-group">
                 <div class="checkbox">
                     <label>
-                        <input asp-for="isT3T4" /> Czy badanie zostało wykonane poprawnie?
+                        <input asp-for="isKrzywa" /> Czy badanie zostało wykonane poprawnie?
                     </label>
                 </div>
             </div>
