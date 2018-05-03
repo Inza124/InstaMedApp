@@ -21,7 +21,7 @@ namespace InstaMedApp.Controllers
         private IResult _result;
         private readonly IHostingEnvironment _appEnvironment;
         private ApplicationDbContext _context;
-        public ResultController(IVisits visits, ITests tests, IResult result,  IHostingEnvironment appEnvironment, ApplicationDbContext context)
+        public ResultController(IVisits visits, ITests tests, IResult result, IHostingEnvironment appEnvironment, ApplicationDbContext context)
         {
             _visits = visits;
             _tests = tests;
@@ -29,8 +29,8 @@ namespace InstaMedApp.Controllers
             _context = context;
             _appEnvironment = appEnvironment;
         }
-        
-        public ActionResult Create (int id)
+
+        public ActionResult Create(int id)
         {
             var test = _result.FindTestByTempId(id);
             if (id == 0)
@@ -207,8 +207,8 @@ namespace InstaMedApp.Controllers
 
         public ActionResult TSH(int id)
         {
-             var model = new TSH { isTSH = false };
-             return View(model);
+            var model = new TSH { isTSH = false };
+            return View(model);
         }
 
         public ActionResult T3T4(int id)
@@ -346,7 +346,7 @@ namespace InstaMedApp.Controllers
                 if (model_Piersi.isUSGPiersi == true)
                 {
                     one.DoctorName = model_Piersi.DocName;
-                   
+
                     var files = HttpContext.Request.Form.Files;
                     foreach (var Image in files)
                     {
@@ -418,6 +418,49 @@ namespace InstaMedApp.Controllers
             TSH TSHTest = _context.TSHs.Find(id);
             return View(TSHTest);
         }
+
+        public ActionResult T3T4Details(int id)
+        {
+            T3T4 T3T4Test = _context.T3T4s.Find(id);
+            return View(T3T4Test);
+        }
+
+        public ActionResult GlukozaDetails(int id)
+        {
+            Glukoza GlukozaTest = _context.Glukozas.Find(id);
+            return View(GlukozaTest);
+        }
+
+        public ActionResult OGTTDetails(int id)
+        {
+            OGTT OGTTTest = _context.OGTTs.Find(id);
+            return View(OGTTTest);
+        }
+
+        public ActionResult MoczDetails(int id)
+        {
+            Mocz MoczTest = _context.Moczs.Find(id);
+            return View(MoczTest);
+        }
+
+        public ActionResult SzpikDetails (int id)
+        {
+            Szpik SzpikTest = _context.Szpiks.Find(id);
+            return View(SzpikTest);
+        }
+
+        public ActionResult KrzywaDetails(int id)
+        {
+            Krzywa KrzywaTest = _context.Krzywas.Find(id);
+            return View(KrzywaTest);
+        }
+
+        public ActionResult BetaDetails(int id)
+        {
+            BetaHCG BetaTest = _context.BetaHCGs.Find(id);
+            return View(BetaTest);
+        }
+
         #endregion
 
         public IActionResult RedirectTo(TestTypeName nameString)

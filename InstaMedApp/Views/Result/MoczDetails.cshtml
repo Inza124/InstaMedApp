@@ -1,0 +1,45 @@
+﻿@model InstaMedData.Models.Mocz
+
+@{
+    ViewData["Title"] = "MoczDetails";
+}
+<br /><br />
+<h2>Wyniki badania moczu</h2>
+<br />
+<p style="font-size: 18px; display: inline">@Html.DisplayNameFor(model => model.Nablonki)</p>
+
+<p style="font-weight: bold; display: inline; font-size: 18px">@Html.DisplayFor(model => model.Nablonki)</p>
+<br />
+<p style="font-size: 18px; display: inline">@Html.DisplayNameFor(model => model.KrwB)</p>
+
+<p style="font-weight: bold; display: inline; font-size: 18px">@Html.DisplayFor(model => model.KrwB)</p>
+<br />
+<p style="font-size: 18px; display: inline">@Html.DisplayNameFor(model => model.KrwCz) </p>
+
+<p style="font-weight: bold; display: inline; font-size: 18px">@Html.DisplayFor(model => model.KrwCz)</p>
+<br />
+<p style="font-size: 18px; display: inline">@Html.DisplayNameFor(model => model.Sluz)</p>
+
+<p style="font-weight: bold; display: inline; font-size: 18px">@Html.DisplayFor(model => model.Sluz)</p>
+<br />
+<p style="font-size: 18px; display: inline">@Html.DisplayNameFor(model => model.Bakterie)</p>
+
+<p style="font-weight: bold; display: inline; font-size: 18px">@Html.DisplayFor(model => model.Bakterie)</p>
+
+
+<br />
+<p style="font-size: 18px; display: inline">  Pracownik zatwierdzający badanie: </p>
+
+<p style="font-weight: bold; display: inline; font-size: 18px"> @Html.DisplayFor(model => model.DocName) </p>
+
+<footer>
+    <br /> <br />
+    <b>Uwaga!</b> Zakresy referencyjne nie są jednoznaczne i mogą się różnic w zależności od prezycji urządzenia pomiarowego. Jeżli wynik wygląda <br /> niepokojąco zalecamy bezwłoczny kontakt z lekarzem, jeżeli natomiast wynik wydaje
+    się być zupełnie oderwany od rzeczywistośći <br /> zachęcamy do kontaktu z kliniką w celu potwierdzenia nieprawidłowisci.
+
+    <br /> <br />
+    <b>Kontakt: </b><br />
+    tel: 111-222-333 <br />
+    tel: 222-333-444 <br />
+    e-mail: instamed@test.pl
+</footer>
