@@ -1,0 +1,37 @@
+﻿@model IEnumerable<InstaMedData.Models.Visit>
+
+@{
+    ViewData["Title"] = "FindResult";
+}
+
+<h2>Moje wizyty</h2>
+
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    Data
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.dateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                <button type="button" class="btn btn-sm btn-primary" onclick="location.href='@Url.Action("SelectResult", "Result", new { id = item.Id })'">Wybierz</button>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

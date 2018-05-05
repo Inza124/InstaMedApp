@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 using InstaMedApp.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace InstaMedApp.Controllers
 {
@@ -19,10 +21,12 @@ namespace InstaMedApp.Controllers
         private IVisits _visits;
         private ITests _tests;
         private IResult _result;
+        private UserManager<ApplicationUser> _user;
         private readonly IHostingEnvironment _appEnvironment;
         private ApplicationDbContext _context;
-        public ResultController(IVisits visits, ITests tests, IResult result, IHostingEnvironment appEnvironment, ApplicationDbContext context)
+        public ResultController(IVisits visits, ITests tests, IResult result, IHostingEnvironment appEnvironment, ApplicationDbContext context, UserManager<ApplicationUser> user)
         {
+            _user = user;
             _visits = visits;
             _tests = tests;
             _result = result;
@@ -415,107 +419,153 @@ namespace InstaMedApp.Controllers
 
         public ActionResult TSHDetails(int id)
         {
-            TSH TSHTest = _context.TSHs.Find(id);
+            var result = _context.Results.Include(h => h.TSHTest).FirstOrDefault(i => i.Id == id);
+            int ID = result.TSHTest.Id;
+            TSH TSHTest = _context.TSHs.Find(ID);
             return View(TSHTest);
         }
 
         public ActionResult T3T4Details(int id)
         {
-            T3T4 T3T4Test = _context.T3T4s.Find(id);
+            var result = _context.Results.Include(h => h.T3T4Test).FirstOrDefault(i => i.Id == id);
+            int ID = result.T3T4Test.Id;
+            T3T4 T3T4Test = _context.T3T4s.Find(ID);
             return View(T3T4Test);
         }
 
         public ActionResult GlukozaDetails(int id)
         {
-            Glukoza GlukozaTest = _context.Glukozas.Find(id);
+            var result = _context.Results.Include(h => h.GlukozaTest).FirstOrDefault(i => i.Id == id);
+            int ID = result.GlukozaTest.Id;
+            Glukoza GlukozaTest = _context.Glukozas.Find(ID);
             return View(GlukozaTest);
         }
 
         public ActionResult OGTTDetails(int id)
         {
-            OGTT OGTTTest = _context.OGTTs.Find(id);
+            var result = _context.Results.Include(h => h.OGTTTest).FirstOrDefault(i => i.Id == id);
+            int ID = result.OGTTTest.Id;
+            OGTT OGTTTest = _context.OGTTs.Find(ID);
             return View(OGTTTest);
         }
 
         public ActionResult MoczDetails(int id)
         {
-            Mocz MoczTest = _context.Moczs.Find(id);
+            var result = _context.Results.Include(h => h.MoczTest).FirstOrDefault(i => i.Id == id);
+            int ID = result.MoczTest.Id;
+            Mocz MoczTest = _context.Moczs.Find(ID);
             return View(MoczTest);
         }
 
         public ActionResult SzpikDetails (int id)
         {
-            Szpik SzpikTest = _context.Szpiks.Find(id);
+            var result = _context.Results.Include(h => h.SzpikTest).FirstOrDefault(i => i.Id == id);
+            int ID = result.SzpikTest.Id;
+            Szpik SzpikTest = _context.Szpiks.Find(ID);
             return View(SzpikTest);
         }
 
         public ActionResult KrzywaDetails(int id)
         {
-            Krzywa KrzywaTest = _context.Krzywas.Find(id);
+            var result = _context.Results.Include(h => h.KrzywaTest).FirstOrDefault(i => i.Id == id);
+            int ID = result.KrzywaTest.Id;
+            Krzywa KrzywaTest = _context.Krzywas.Find(ID);
             return View(KrzywaTest);
         }
 
         public ActionResult BetaDetails(int id)
         {
-            BetaHCG BetaTest = _context.BetaHCGs.Find(id);
+            var result = _context.Results.Include(h => h.BetaHCGTest).FirstOrDefault(i => i.Id == id);
+            int ID = result.BetaHCGTest.Id;
+            BetaHCG BetaTest = _context.BetaHCGs.Find(ID);
             return View(BetaTest);
         }
 
         public ActionResult MorfDetails(int id)
         {
-            Morf MorfTest = _context.Morves.Find(id);
+            var result = _context.Results.Include(h => h.MorfTest).FirstOrDefault(i => i.Id == id);
+            int ID = result.MorfTest.Id;
+            Morf MorfTest = _context.Morves.Find(ID);
             return View(MorfTest);
         }
 
         public ActionResult Morf5Details(int id)
         {
-            Morf5 Morf5Test = _context.Morves5.Find(id);
+            var result = _context.Results.Include(h => h.Morf5Test).FirstOrDefault(i => i.Id == id);
+            int ID = result.Morf5Test.Id;
+            Morf5 Morf5Test = _context.Morves5.Find(ID);
             return View(Morf5Test);
         }
 
         public ActionResult TestosteronDetails(int id)
         {
-            Testosteron TestosteronTest = _context.Testosterons.Find(id);
+            var result = _context.Results.Include(h => h.TestosteronTest).FirstOrDefault(i => i.Id == id);
+            int ID = result.TestosteronTest.Id;
+            Testosteron TestosteronTest = _context.Testosterons.Find(ID);
             return View(TestosteronTest);
         }
 
         public ActionResult ProgesteronDetails(int id)
         {
-            Progesteron ProgesteronTest = _context.Progesterons.Find(id);
+            var result = _context.Results.Include(h => h.ProgesteronTest).FirstOrDefault(i => i.Id == id);
+            int ID = result.ProgesteronTest.Id;
+            Progesteron ProgesteronTest = _context.Progesterons.Find(ID);
             return View(ProgesteronTest);
         }
 
         public ActionResult EstrogenDetails(int id)
         {
-            Estrogen EstrogenTest = _context.Estrogens.Find(id);
+            var result = _context.Results.Include(h => h.EstrogenTest).FirstOrDefault(i => i.Id == id);
+            int ID = result.EstrogenTest.Id;
+            Estrogen EstrogenTest = _context.Estrogens.Find(ID);
             return View(EstrogenTest);
         }
 
         public ActionResult USGSzyiDetails(int id)
         {
-            USGSzyi USGSzyiTest = _context.USGSzyis.Find(id);
+            var result = _context.Results.Include(h => h.USGSzyiTest).FirstOrDefault(i => i.Id == id);
+            int ID = result.USGSzyiTest.Id;
+            USGSzyi USGSzyiTest = _context.USGSzyis.Find(ID);
             return View(USGSzyiTest);
         }
 
         public ActionResult USGSercaDetails(int id)
         {
-            USGSerca USGSercaTest = _context.USGSercas.Find(id);
+            var result = _context.Results.Include(h => h.USGSercaTest).FirstOrDefault(i => i.Id == id);
+            int ID = result.USGSercaTest.Id;
+            USGSerca USGSercaTest = _context.USGSercas.Find(ID);
             return View(USGSercaTest);
         }
 
         public ActionResult USGPiersiDetails(int id)
         {
-            USGPiersi USGPiersiTest = _context.USGPiersis.Find(id);
+            var result = _context.Results.Include(h => h.USGPiersiTest).FirstOrDefault(i => i.Id == id);
+            int ID = result.USGPiersiTest.Id;
+            USGPiersi USGPiersiTest = _context.USGPiersis.Find(ID);
             return View(USGPiersiTest);
         }
 
         #endregion
 
+        public ActionResult FindResult()
+        {
+            var userId = _user.GetUserId(HttpContext.User);
+            ApplicationUser AppUser = _user.FindByIdAsync(userId).Result;
+            var visits = _context.Visits.Where(h => h.User == AppUser);
+            return View(visits);
+        }
+
+        public ActionResult SelectResult(int id)
+        {
+            var results = _result.GetResultsByVisit(_visits.GetById(id));
+            return View(results);
+        }
+
         public  IActionResult DetailsSelect(int id)
         {
             var model = _result.GetById(id);
             if (model.ResultType == "Badanie TSH") return RedirectToAction("TSHDetails", new { id });
-            if (model.ResultType == "Badanie poziomu T3 i T4 ") return RedirectToAction("T3T4Details", new { id });
+            if (model.ResultType == "Badanie poziomu T3 i T4") return RedirectToAction("T3T4Details", new { id });
             if (model.ResultType == "Badanie obciążenia glukozy") return RedirectToAction("OGTTDetails", new { id });
             if (model.ResultType == "Badanie poziomu glukozy") return RedirectToAction("GlukozaDetails", new { id });
             if (model.ResultType == "Posiew moczu") return RedirectToAction("MoczDetails", new { id });

@@ -3,24 +3,37 @@
     ViewData["Title"] = "UserDashboard";
 }
 
-<h2>Panel Użytkownika</h2> 
+<h2>Panel Użytkownika</h2>
+<br /> <br />
+       <div class="col-md-12">
+           <div class="col-md-8">
+               <div class="col-md-6" style="padding-bottom: 40px">
+                   <img src="~/images/list.png" /> <br /> <br />
+                   <button type="button" style="position: center" class="btn btn-warning" onclick="location.href='@Url.Action("Index", "Test")'">Lista badań</button>
+               </div>
 
-<div class="col-md-3">
-    <img src="~/images/list.png" />
-    <button type="button"   style="position: center"  class="btn btn-sm btn-primary" onclick="location.href='@Url.Action("Index", "Test")'">Lista badań</button>
-</div>
+               <div class="col-md-6" style="padding-bottom: 40px">
+                   <img src="~/images/enrol.png" /> <br /> <br />
+                   &nbsp;&nbsp; <button type="button" style="position: center" class="btn btn-warning" onclick="location.href='@Url.Action("Create", "Visit")'">Zapisz się</button>
+               </div>
 
-<div class="col-md-3">
-    <img src="~/images/list.png" />
-    <button type="button"  style="position: center" class="btn btn-sm btn-primary" onclick="location.href='@Url.Action("Create", "Visit")'">Zapisz się</button>
-</div>
+               <div class="col-md-6" style="padding-bottom: 80px">
+                   <img src="~/images/result.png" /> <br /> <br />
+                   &nbsp; <button type="button" style="position: center" class="btn btn-warning" onclick="location.href='@Url.Action("FindResult", "Result")'">Moje wyniki</button>
+               </div>
 
-<div class="col-md-3">
-    <img src="~/images/list.png" />
-    <button type="button"  style="position: center" class="btn btn-sm btn-primary" onclick="location.href='@Url.Action("FindResult", "Result")'">Moje wyniki</button>
-</div>
+               <div class="col-md-6" style="padding-bottom: 80px">
+                   <img src="~/images/manage.png" /> <br /> <br />
+                   &nbsp;&nbsp;&nbsp;&nbsp; <button type="button" style="align-items: center" class="btn btn-warning" onclick="location.href='@Url.Action("Index", "Manage")'">Konto</button>
+               </div>
 
-<div class="col-md-3">
-    <img src="~/images/list.png" />
-    <button type="button" style="align-items: center" class="btn btn-sm btn-primary" onclick="location.href='@Url.Action("Index", "Test")'">Konto</button>
-</div>
+           </div>
+           <div style="border-right:1px solid black; width: 0; padding-left: 10px; float:right"></div>
+           <div class="col-md-4">
+               <div class="col-md-12">
+                   <img src="~/images/heart.png" /> <br /><br />
+                   <p>Pacjencie! Co roku odnotowujemy wzrost zachorowań na choroby układu odpornościowego, częstym ich powodem jest brak chigieny oraz nie odpowiedzielność. Apelujemy o zachowanie ostrożności w kontakcie z brudną wodą oraz o zachowanie odpowiedniej chigieny przed i po posiłku. W ten sposób pomagasz nie tylko sobie ale także innym. </p>
+               </div>
+           </div>
+       </div>
+

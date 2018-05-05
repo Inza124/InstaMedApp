@@ -1,0 +1,44 @@
+﻿@model IEnumerable<InstaMedData.Models.Result>
+
+@{
+    ViewData["Title"] = "SelectResult";
+}
+@if (Model != null)
+{
+    <h2>Wybierz wynik</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Pracownik zatwierdzający
+                </th>
+                <th>
+                    Badanie
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DoctorName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ResultType)
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-sm btn-default" onclick="location.href='@Url.Action("DetailsSelect", "Result", new { id = item.Id })'">Wyniki</button>
+                    </td>
+                </tr>
+            }   
+        </tbody>
+    </table>
+} else
+{
+    <h1>Brak wyników </h1>
+
+}

@@ -36,6 +36,8 @@ namespace InstaMedData
         public DbSet<OGTT> OGTTs { get; set; }
         public DbSet<Progesteron> Progesterons { get; set; }
         public DbSet<Szpik> Szpiks { get; set; }
+
+        public DbSet<News> Newses { get; set; }
              
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

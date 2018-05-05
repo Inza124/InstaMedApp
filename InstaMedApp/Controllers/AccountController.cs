@@ -108,6 +108,20 @@ namespace InstaMedApp.Controllers
             ApplicationUser AppUser = _userManager.FindByIdAsync(userId).Result;
             return View(AppUser);
         }
+
+        public ActionResult WhatUser()
+        {
+            var userId = _userManager.GetUserId(HttpContext.User);
+            ApplicationUser AppUser = _userManager.FindByIdAsync(userId).Result;
+            if (AppUser.Acces == 1)
+            {
+                return RedirectToAction("UserDashboard");
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
         #region Identity stuff
         [HttpGet]
         [AllowAnonymous]
