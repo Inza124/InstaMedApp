@@ -11,9 +11,10 @@ using System;
 namespace InstaMedData.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180504203507_error-fixing")]
+    partial class errorfixing
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,8 +25,6 @@ namespace InstaMedData.Migrations
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<int>("Acces");
 
                     b.Property<int>("AccessFailedCount");
 

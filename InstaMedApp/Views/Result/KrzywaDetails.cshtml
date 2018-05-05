@@ -1,0 +1,37 @@
+﻿@model InstaMedData.Models.Krzywa
+
+@{
+    ViewData["Title"] = "KrzywaDetails";
+}
+<br /><br />
+<h2>Wyniki badania krzywej cukrowej</h2>
+
+<br />
+<p style="font-size: 18px; display: inline"> Pierwszy pomiar: </p>
+
+<p style="font-weight: bold; display: inline; font-size: 18px"> @Html.DisplayFor(model => model.FirstGlu) </p>
+<br />
+<p style="font-size: 18px; display: inline"> Drugi pomiar:</p>
+
+<p style="font-weight: bold; display: inline; font-size: 18px"> @Html.DisplayFor(model => model.SecondGlu)</p>
+<br />
+<p style="font-size: 18px; display: inline"> Trzeci pomiar: </p>
+
+<p style="font-weight: bold; display: inline; font-size: 18px">@Html.DisplayFor(model => model.ThirdGlu)</p>
+
+<br />
+<p style="font-size: 18px; display: inline">  Pracownik zatwierdzający badanie: </p>
+
+<p style="font-weight: bold; display: inline; font-size: 18px"> @Html.DisplayFor(model => model.DocName) </p>
+
+<footer>
+    <br /> <br />
+    <b>Uwaga!</b> Zakresy referencyjne nie są jednoznaczne i mogą się różnic w zależności od prezycji urządzenia pomiarowego. Jeżli wynik wygląda <br /> niepokojąco zalecamy bezwłoczny kontakt z lekarzem, jeżeli natomiast wynik wydaje
+    się być zupełnie oderwany od rzeczywistośći <br /> zachęcamy do kontaktu z kliniką w celu potwierdzenia nieprawidłowisci.
+
+    <br /> <br />
+    <b>Kontakt: </b><br />
+    tel: 111-222-333 <br />
+    tel: 222-333-444 <br />
+    e-mail: instamed@test.pl
+</footer>

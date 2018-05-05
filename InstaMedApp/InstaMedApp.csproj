@@ -29,6 +29,7 @@
   <ItemGroup>
     <Folder Include="Models\TestsViewModels\" />
     <Folder Include="wwwroot\dateTime\" />
+    <Folder Include="wwwroot\lib\bootstrap\dist\css\" />
     <Folder Include="wwwroot\uploads\img\" />
   </ItemGroup>
 

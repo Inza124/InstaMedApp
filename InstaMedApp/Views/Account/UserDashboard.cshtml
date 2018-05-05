@@ -1,0 +1,26 @@
+﻿@model InstaMedData.Models.ApplicationUser
+@{
+    ViewData["Title"] = "UserDashboard";
+}
+
+<h2>Panel Użytkownika</h2> 
+
+<div class="col-md-3">
+    <img src="~/images/list.png" />
+    <button type="button"   style="position: center"  class="btn btn-sm btn-primary" onclick="location.href='@Url.Action("Index", "Test")'">Lista badań</button>
+</div>
+
+<div class="col-md-3">
+    <img src="~/images/list.png" />
+    <button type="button"  style="position: center" class="btn btn-sm btn-primary" onclick="location.href='@Url.Action("Create", "Visit")'">Zapisz się</button>
+</div>
+
+<div class="col-md-3">
+    <img src="~/images/list.png" />
+    <button type="button"  style="position: center" class="btn btn-sm btn-primary" onclick="location.href='@Url.Action("FindResult", "Result")'">Moje wyniki</button>
+</div>
+
+<div class="col-md-3">
+    <img src="~/images/list.png" />
+    <button type="button" style="align-items: center" class="btn btn-sm btn-primary" onclick="location.href='@Url.Action("Index", "Test")'">Konto</button>
+</div>

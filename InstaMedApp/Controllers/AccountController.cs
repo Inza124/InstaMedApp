@@ -66,8 +66,21 @@ namespace InstaMedApp.Controllers
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
-                    return RedirectToLocal(returnUrl);
+
+                    ApplicationUser AppUser = _userManager.FindByNameAsync(model.Email).Result;
+
+                    if (AppUser.Acces == 1)
+                    {
+                        return RedirectToAction("UserDashboard");
+                    }
+                    if (AppUser.Acces == 2)
+                    {
+                        return RedirectToAction("WorkerDashboard");
+                    }
+                    if (AppUser.Acces == 4)
+                    {
+                        return RedirectToAction("AdminDashboard");
+                    }
                 }
                 if (result.RequiresTwoFactor)
                 {
@@ -89,6 +102,13 @@ namespace InstaMedApp.Controllers
             return View(model);
         }
 
+        public ActionResult UserDashboard()
+        {
+            var userId = _userManager.GetUserId(HttpContext.User);
+            ApplicationUser AppUser = _userManager.FindByIdAsync(userId).Result;
+            return View(AppUser);
+        }
+        #region Identity stuff
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> LoginWith2fa(bool rememberMe, string returnUrl = null)
@@ -439,6 +459,7 @@ namespace InstaMedApp.Controllers
             return View();
         }
 
+        #endregion
         #region Helpers
 
         private void AddErrors(IdentityResult result)

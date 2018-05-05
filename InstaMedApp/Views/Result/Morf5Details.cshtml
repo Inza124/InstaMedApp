@@ -1,0 +1,70 @@
+﻿@model InstaMedData.Models.Morf5
+
+@{
+    ViewData["Title"] = "Morf5Details";
+}
+<br /><br />
+<h2>Wyniki badania morfologi z rozmazem</h2>
+<br />
+
+<p style="font-size: 18px; display: inline">@Html.DisplayNameFor(model => model.RBCResult)</p>
+
+<p style="font-weight: bold; display: inline; font-size: 18px">@Html.DisplayFor(model => model.RBCResult)</p>
+<br />
+<p style="font-size: 18px; display: inline">@Html.DisplayNameFor(model => model.WBCResult)</p>
+
+<p style="font-weight: bold; display: inline; font-size: 18px">@Html.DisplayFor(model => model.WBCResult)</p>
+<br />
+<p style="font-size: 18px; display: inline">@Html.DisplayNameFor(model => model.HBResult)</p>
+
+<p style="font-weight: bold; display: inline; font-size: 18px">@Html.DisplayFor(model => model.HBResult)</p>
+<br />
+<p style="font-size: 18px; display: inline">@Html.DisplayNameFor(model => model.HTResult)</p>
+
+<p style="font-weight: bold; display: inline; font-size: 18px">@Html.DisplayFor(model => model.HTResult)</p>
+<br />
+<p style="font-size: 18px; display: inline">@Html.DisplayNameFor(model => model.MCVResult)</p>
+
+<p style="font-weight: bold; display: inline; font-size: 18px">@Html.DisplayFor(model => model.MCVResult)</p>
+<br />
+<p style="font-size: 18px; display: inline">@Html.DisplayNameFor(model => model.MCHResult)</p>
+
+<p style="font-weight: bold; display: inline; font-size: 18px">@Html.DisplayFor(model => model.MCHResult)</p>
+<br />
+<p style="font-size: 18px; display: inline">@Html.DisplayNameFor(model => model.MCHCResult)</p>
+
+<p style="font-weight: bold; display: inline; font-size: 18px">@Html.DisplayFor(model => model.MCHCResult)</p>
+<br />
+<p style="font-size: 18px; display: inline">@Html.DisplayNameFor(model => model.Plt)</p>
+
+<p style="font-weight: bold; display: inline; font-size: 18px">@Html.DisplayFor(model => model.Plt)</p>
+<br />
+<p style="font-size: 18px; display: inline">@Html.DisplayNameFor(model => model.Neutrofile)</p>
+
+<p style="font-weight: bold; display: inline; font-size: 18px">@Html.DisplayFor(model => model.Neutrofile)</p>
+<br />
+<p style="font-size: 18px; display: inline">@Html.DisplayNameFor(model => model.Limfocyty)</p>
+
+<p style="font-weight: bold; display: inline; font-size: 18px">@Html.DisplayFor(model => model.Limfocyty)</p>
+<br />
+<p style="font-size: 18px; display: inline">@Html.DisplayNameFor(model => model.Monocyty)</p>
+
+<p style="font-weight: bold; display: inline; font-size: 18px">@Html.DisplayFor(model => model.Monocyty)</p>
+
+
+<br />
+<p style="font-size: 18px; display: inline">  Pracownik zatwierdzający badanie: </p>
+
+<p style="font-weight: bold; display: inline; font-size: 18px"> @Html.DisplayFor(model => model.DocName) </p>
+
+<footer>
+    <br /> <br />
+    <b>Uwaga!</b> Zakresy referencyjne nie są jednoznaczne i mogą się różnic w zależności od prezycji urządzenia pomiarowego. Jeżli wynik wygląda <br /> niepokojąco zalecamy bezwłoczny kontakt z lekarzem, jeżeli natomiast wynik wydaje
+    się być zupełnie oderwany od rzeczywistośći <br /> zachęcamy do kontaktu z kliniką w celu potwierdzenia nieprawidłowisci.
+
+    <br /> <br />
+    <b>Kontakt: </b><br />
+    tel: 111-222-333 <br />
+    tel: 222-333-444 <br />
+    e-mail: instamed@test.pl
+</footer>

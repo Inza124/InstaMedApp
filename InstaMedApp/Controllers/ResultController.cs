@@ -461,7 +461,77 @@ namespace InstaMedApp.Controllers
             return View(BetaTest);
         }
 
+        public ActionResult MorfDetails(int id)
+        {
+            Morf MorfTest = _context.Morves.Find(id);
+            return View(MorfTest);
+        }
+
+        public ActionResult Morf5Details(int id)
+        {
+            Morf5 Morf5Test = _context.Morves5.Find(id);
+            return View(Morf5Test);
+        }
+
+        public ActionResult TestosteronDetails(int id)
+        {
+            Testosteron TestosteronTest = _context.Testosterons.Find(id);
+            return View(TestosteronTest);
+        }
+
+        public ActionResult ProgesteronDetails(int id)
+        {
+            Progesteron ProgesteronTest = _context.Progesterons.Find(id);
+            return View(ProgesteronTest);
+        }
+
+        public ActionResult EstrogenDetails(int id)
+        {
+            Estrogen EstrogenTest = _context.Estrogens.Find(id);
+            return View(EstrogenTest);
+        }
+
+        public ActionResult USGSzyiDetails(int id)
+        {
+            USGSzyi USGSzyiTest = _context.USGSzyis.Find(id);
+            return View(USGSzyiTest);
+        }
+
+        public ActionResult USGSercaDetails(int id)
+        {
+            USGSerca USGSercaTest = _context.USGSercas.Find(id);
+            return View(USGSercaTest);
+        }
+
+        public ActionResult USGPiersiDetails(int id)
+        {
+            USGPiersi USGPiersiTest = _context.USGPiersis.Find(id);
+            return View(USGPiersiTest);
+        }
+
         #endregion
+
+        public  IActionResult DetailsSelect(int id)
+        {
+            var model = _result.GetById(id);
+            if (model.ResultType == "Badanie TSH") return RedirectToAction("TSHDetails", new { id });
+            if (model.ResultType == "Badanie poziomu T3 i T4 ") return RedirectToAction("T3T4Details", new { id });
+            if (model.ResultType == "Badanie obciążenia glukozy") return RedirectToAction("OGTTDetails", new { id });
+            if (model.ResultType == "Badanie poziomu glukozy") return RedirectToAction("GlukozaDetails", new { id });
+            if (model.ResultType == "Posiew moczu") return RedirectToAction("MoczDetails", new { id });
+            if (model.ResultType == "Barwienie szpiku") return RedirectToAction("SzpikDetails", new { id });
+            if (model.ResultType == "Krzywa cukrowa") return RedirectToAction("KrzywaDetails", new { id });
+            if (model.ResultType == "Badanie poziomu testosteronu") return RedirectToAction("TestosteronDetails", new { id });
+            if (model.ResultType == "Badanie poziomu progesteronu") return RedirectToAction("ProgesteronDetails", new { id });
+            if (model.ResultType == "Badanie poziomu estrogenów") return RedirectToAction("EstrogenDetails", new { id });
+            if (model.ResultType == "USG szyi") return RedirectToAction("USGSzyiDetails", new { id });
+            if (model.ResultType == "USG serca") return RedirectToAction("USGSercaDetails", new { id });
+            if (model.ResultType == "USG piersi") return RedirectToAction("USGPiersiDetails", new { id });
+            if (model.ResultType == "Badanie hormonu BetaHCG") return RedirectToAction("BetaDetails", new { id });
+            if (model.ResultType == "Morfologia krwi") return RedirectToAction("MorfDetails", new { id });
+            if (model.ResultType == "Morfologia krwi z rozmazem") return RedirectToAction("Morf5Details", new { id });
+            return View();
+        }
 
         public IActionResult RedirectTo(TestTypeName nameString)
         {
