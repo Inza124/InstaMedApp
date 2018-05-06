@@ -4,12 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - InstaMedApp</title>
-   
+
     <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="../css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    <link href="https://fonts.googleapis.com/css?family=Yellowtail" rel="stylesheet">
 
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-lab.css"/>
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-lab.css" />
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment exclude="Development">
@@ -29,13 +30,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">InstaMed</a>
+                <a  style ="padding-top: 3px;" href="#" class="navbar-left"><img src="~/images/insta.png" /></a>
+                <a style="color:darkred; font-family: Yellowtail; font-size: 35px; padding-right: 10px"asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">InstaMed</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">O nas</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Kontakt</a></li>
+                    <li style="color:crimson; font-family: Yellowtail; font-size: 20px"><a asp-area="" asp-controller="Home" asp-action="Index">Start</a></li>
+                    <li style="color:crimson; font-family: Yellowtail; font-size: 20px"><a asp-area="" asp-controller="Home" asp-action="About">O nas</a></li>
+                    <li style="color:crimson; font-family: Yellowtail; font-size: 20px"><a asp-area="" asp-controller="Home" asp-action="Contact">Kontakt</a></li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>

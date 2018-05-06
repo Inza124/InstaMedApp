@@ -1,0 +1,52 @@
+﻿@model IEnumerable<InstaMedData.Models.ApplicationUser>
+
+@{
+    ViewData["Title"] = "ManageUsers";
+}
+
+<h2>Zarządzaj użytkownikami</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    Imie
+                </th>
+                <th>
+                    Nazwisko
+                </th>
+                <th>
+                    Data dołączenia
+                </th>
+                <th>
+                    Dostęp
+                </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JoinDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Acces)
+            </td>
+
+            <td>
+                <button type="button" class="btn btn-sm btn-primary" onclick="location.href='@Url.Action("UserDetails", "Account", new { id = item.Id })'">Szczegóły</button>
+                <button type="button" class="btn btn-sm btn-primary" onclick="location.href='@Url.Action("Lockout", "Account", new { id = item.Id })'">Zablokuj</button>
+                <button type="button" class="btn btn-sm btn-primary" onclick="location.href='@Url.Action("AccesChange", "Account", new { id = item.Id })'">Nadaj uprawnienia</button>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

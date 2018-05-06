@@ -1,0 +1,46 @@
+﻿@model InstaMedData.Models.ApplicationUser
+@{
+    ViewData["Title"] = "UserDashboard";
+}
+
+<h2>Panel Pracownika</h2>
+<br /> <br />
+       <div class="col-md-12">
+           <div class="col-md-4" style="padding-bottom: 40px">
+               <img src="~/images/list.png" /> <br /> <br />
+               <button type="button" style="position: center" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Test")'">Lista badań</button>
+           </div>
+
+           <div class="col-md-4" style="padding-bottom: 40px">
+               <img src="~/images/enrol.png" /> <br /> <br />
+               &nbsp;&nbsp; <button type="button" style="position: center" class="btn btn-info" onclick="location.href='@Url.Action("Create", "Visit")'">Zapisz się</button>
+           </div>
+
+           <div class="col-md-4" style="padding-bottom: 80px">
+               <img src="~/images/result.png" /> <br /> <br />
+               &nbsp; <button type="button" style="position: center" class="btn btn-info" onclick="location.href='@Url.Action("FindResult", "Result")'">Moje wyniki</button>
+           </div>
+
+           <div class="col-md-4" style="padding-bottom: 80px">
+               <img src="~/images/manage.png" /> <br /> <br />
+              &nbsp;&nbsp; <button type="button" style="align-items: center" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Manage")'">Konto</button>
+           </div>
+
+           <div class="col-md-4" style="padding-bottom: 80px">
+               <img src="~/images/add.png" /> <br /> <br />
+               <button type="button" style="align-items: center" class="btn btn-info" onclick="location.href='@Url.Action("Create", "Test")'">Dodaj badanie</button>
+           </div>
+
+           <div class="col-md-4" style="padding-bottom: 80px; padding-right: 10px">
+               <img src="~/images/res.png" /> <br /> <br />
+                <button type="button" style="align-items: center; " class="btn btn-info" onclick="location.href='@Url.Action("Index", "Visit")'">Dodaj Wyniki</button>
+           </div>
+       </div>
+<footer style="padding-top: 60px"><b>Witaj</b> w panelu pracownika, W celu poprawnej obsługi dostępnych funkcji zapoznaj się z regulaminem oraz instrukcją. Jeżeli zawartość panelu jest niezgodna z 
+    opisem instrucji, prosimy o kontakt z administracją w celu identyfikacji usterki. W przypadku wykrycia nieprawidłowości również prosimy o kontakt. Informowanie nas o problemach jest niezbędne do utrzymania prawidłowej pracy systemu. <br /> <br />
+    <b>Kontakt:</b> <br />
+    Tel: 111 222 333 <br />
+    Tel: 222 333 555 <br />
+    email: instamed@test.pl
+    </footer>
+

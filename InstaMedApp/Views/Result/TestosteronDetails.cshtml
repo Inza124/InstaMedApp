@@ -1,4 +1,4 @@
-﻿@model InstaMedData.Models.Estrogen
+﻿@model InstaMedData.Models.Testosteron
 
 @{
     ViewData["Title"] = "TestosteronDetails";
@@ -7,9 +7,15 @@
 <h2>Wynik badania testosteronu</h2>
 <br />
 
-<p style="font-size: 18px; display: inline">  Testosteron: </p>
+<p style="font-size: 18px; display: inline">  Testosteron wolny: </p>
 
-<p style="font-weight: bold; display: inline; font-size: 18px">@Html.DisplayFor(model => model.EstrogenResult)</p>
+<p style="font-weight: bold; display: inline; font-size: 18px">@Html.DisplayFor(model => model.TestosteronFree)</p>
+<br />
+
+<p style="font-size: 18px; display: inline">  Testosteron całkowity: </p>
+
+<p style="font-weight: bold; display: inline; font-size: 18px">@Html.DisplayFor(model => model.TestosteronAll)</p>
+
 
 
 <br />

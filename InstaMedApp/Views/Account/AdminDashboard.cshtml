@@ -1,0 +1,53 @@
+﻿@model InstaMedData.Models.ApplicationUser
+@{
+    ViewData["Title"] = "UserDashboard";
+}
+<br />
+<h2>Panel Administratora</h2>
+<br /> <br />
+       <div class="col-md-12">
+           <div class="col-md-4" style="padding-bottom: 40px">
+               <img src="~/images/list.png" /> <br /> <br />
+               <button type="button" style="position: center" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Test")'">Lista badań</button>
+           </div>
+
+           <div class="col-md-4" style="padding-bottom: 40px">
+               <img style ="padding-left:8px"src="~/images/2list.png" /> <br /> <br />
+         <button type="button" style="position: center" class="btn btn-info" onclick="location.href='@Url.Action("GetAll", "Result")'">Lista wyników</button>
+           </div>
+
+           <div class="col-md-4" style="padding-bottom: 80px">
+               <img style ="padding-left: 5px"src="~/images/users.png" /> <br /> <br />
+               &nbsp; <button type="button" style="position: center" class="btn btn-info" onclick="location.href='@Url.Action("ManageUsers", "Account")'">Użytkownicy</button>
+           </div>
+
+           <div class="col-md-4" style="padding-bottom: 80px">
+               <img src="~/images/manage.png" /> <br /> <br />
+               &nbsp;&nbsp;&nbsp; <button type="button" style="align-items: center" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Manage")'">Konto</button>
+           </div>
+
+           <div class="col-md-4" style="padding-bottom: 80px">
+               <img style ="padding-left: 10px"src="~/images/add.png" /> <br /> <br />
+               <button type="button" style="align-items: center" class="btn btn-info" onclick="location.href='@Url.Action("Create", "Test")'">Dodaj badanie</button>
+           </div>
+
+           <div class="col-md-4" style="padding-bottom: 80px; padding-right: 10px">
+               <img style="padding-left:10px" src="~/images/res.png" /> <br /> <br />
+               &nbsp;&nbsp;&nbsp;&nbsp; <button type="button" style="align-items: center; " class="btn btn-info" onclick="location.href='@Url.Action("Index", "Visit")'">Lista wizyt</button>
+           </div>
+
+           <div class="col-md-4" style="padding-bottom: 80px; padding-right: 10px">
+               <img style ="padding-left:10px"src="~/images/postadd.png" /> <br /> <br />
+               <button type="button" style="align-items: center; " class="btn btn-info" onclick="location.href='@Url.Action("Index", "Visit")'">Napisz posta</button>
+           </div>
+
+           <div class="col-md-4" style="padding-bottom: 80px; padding-right: 10px">
+               <img src="~/images/post.png" /> <br /> <br />
+               &nbsp;&nbsp;&nbsp;&nbsp; <button type="button" style="align-items: center; " class="btn btn-info" onclick="location.href='@Url.Action("Index", "Visit")'">Posty</button>
+           </div>
+
+           <div class="col-md-4" style="padding-bottom: 80px; padding-right: 10px">
+               <img style="padding-left: 20px"src="~/images/stettigs.png" /> <br /> <br />
+               <button type="button" style="align-items: center; " class="btn btn-info" onclick="location.href='@Url.Action("Index", "Visit")'">Przerwa techniczna</button>
+           </div>
+       </div>

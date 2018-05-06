@@ -113,6 +113,12 @@ namespace InstaMedApp.Controllers
             return View();
         }
 
+        public ActionResult GetAll()
+        {
+            var results = _result.GetAllResult().ToList();
+            return View(results);
+        }
+
         public IActionResult ChooseRes(int id)
         {
             var currentVisit = _visits.GetById(id);

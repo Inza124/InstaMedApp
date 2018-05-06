@@ -14,6 +14,7 @@ using InstaMedApp.Models;
 using InstaMedService;
 using InstaMedApp.Models.AccountViewModels;
 using InstaMedData.Models;
+using InstaMedData;
 using InstaMedService.Services;
 
 namespace InstaMedApp.Controllers
@@ -26,13 +27,16 @@ namespace InstaMedApp.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
+        private readonly ApplicationDbContext _context;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-            ILogger<AccountController> logger)
+            ILogger<AccountController> logger,
+            ApplicationDbContext context)
         {
+            _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
@@ -109,6 +113,34 @@ namespace InstaMedApp.Controllers
             return View(AppUser);
         }
 
+        public ActionResult WorkerDashboard()
+        {
+            var userId = _userManager.GetUserId(HttpContext.User);
+            ApplicationUser AppUser = _userManager.FindByIdAsync(userId).Result;
+            return View(AppUser);
+        }
+
+        public ActionResult AdminDashboard()
+        {
+            var userId = _userManager.GetUserId(HttpContext.User);
+            ApplicationUser AppUser = _userManager.FindByIdAsync(userId).Result;
+            return View(AppUser);
+        }
+
+        public ActionResult ManageUsers()
+        {
+            var Users = _context.ApplicationUsers.ToList();
+            return View(Users);
+        }
+
+        public ActionResult AccesChange(string id)
+        {
+            ApplicationUser AppUser = _userManager.FindByIdAsync(id).Result;
+            AppUser.Acces = 2;
+            _context.SaveChanges();
+            return View();
+        }
+
         public ActionResult WhatUser()
         {
             var userId = _userManager.GetUserId(HttpContext.User);
@@ -116,6 +148,14 @@ namespace InstaMedApp.Controllers
             if (AppUser.Acces == 1)
             {
                 return RedirectToAction("UserDashboard");
+            }
+            if (AppUser.Acces == 2)
+            {
+                return RedirectToAction("WorkerDashboard");
+            }
+            if (AppUser.Acces == 4)
+            {
+                return RedirectToAction("AdminDashboard");
             }
             else
             {
@@ -235,8 +275,11 @@ namespace InstaMedApp.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Lockout()
+        public IActionResult Lockout(string id)
         {
+            ApplicationUser AppUser = _userManager.FindByIdAsync(id).Result;
+            AppUser.Acces = 0;
+            _context.SaveChanges();
             return View();
         }
 
@@ -256,7 +299,7 @@ namespace InstaMedApp.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName,Pesel = model.Pesel, Telephone = model.Telephone, JoinDate = DateTime.Now };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName,Pesel = model.Pesel, Telephone = model.Telephone, JoinDate = DateTime.Now, Acces = 1 };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

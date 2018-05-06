@@ -1,0 +1,33 @@
+﻿@model IEnumerable<InstaMedData.Models.Result>
+
+@{
+    ViewData["Title"] = "GetAll";
+}
+
+<h2>Wszystkie wyniki</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    Pracownik zatwierdzający badanie:
+                </th>
+                <th>
+                    Badanie:
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoctorName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResultType)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
