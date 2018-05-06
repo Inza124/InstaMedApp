@@ -10,6 +10,7 @@ namespace InstaMedApp.Extensions
     {
         private static List<Test> cart;
         private static List<Temp> testsId;
+        private static bool isBreak;
         private static int VisitId;
         static CartHelper()
         {
@@ -44,6 +45,16 @@ namespace InstaMedApp.Extensions
         public static void ResetVisitId()
         {
             VisitId = 0;
+        }
+
+        public static void SetBreak()
+        {
+            isBreak = true;
+        }
+
+        public static bool GetBreak()
+        {
+            return isBreak;
         }
     }
 }

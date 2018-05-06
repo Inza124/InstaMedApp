@@ -5,13 +5,27 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using InstaMedApp.Models;
+using InstaMedData;
+using InstaMedApp.Extensions;
 
 namespace InstaMedApp.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ApplicationDbContext _context;
+        public HomeController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
         public IActionResult Index()
         {
+            var list = _context.Newses.ToList();
+            return View(list);
+        }
+
+        public ActionResult Break()
+        {
+            CartHelper.SetBreak();
             return View();
         }
 

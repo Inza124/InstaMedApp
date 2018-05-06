@@ -1,0 +1,21 @@
+﻿@model IEnumerable<InstaMedData.Models.News>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Aktualności</h1>
+
+@foreach (var item in Model)
+{
+    <div class="col-md-4">
+        <img src="~/uploads/img/@Html.DisplayFor(modelItem => item.ImageName)" />
+    </div>
+
+    <div class="col-md-8">
+        <p>@Html.DisplayFor(modelItem => item.BodyText)</p>
+    </div>
+    <br />
+    <hr />
+    <br />
+}

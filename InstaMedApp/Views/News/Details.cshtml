@@ -1,0 +1,21 @@
+﻿@model InstaMedData.Models.News
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ImageName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BodyText)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BodyText)
+        </dd>
+    </dl>
+
