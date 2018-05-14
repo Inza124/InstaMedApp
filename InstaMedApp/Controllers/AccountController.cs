@@ -133,12 +133,12 @@ namespace InstaMedApp.Controllers
             return View(Users);
         }
 
-        public ActionResult AccesChange(string id)
+        public ActionResult ChangeAcces(string id)
         {
             ApplicationUser AppUser = _userManager.FindByIdAsync(id).Result;
             AppUser.Acces = 2;
             _context.SaveChanges();
-            return View();
+            return RedirectToAction("ManageUsers");
         }
 
         public ActionResult WhatUser()

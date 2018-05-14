@@ -1,7 +1,7 @@
 ﻿@model InstaMedApp.Models.VisitsViewModel
 
 @{
-	ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create";
 }
 <head>
     <script src="~/jquery/jquery-1.8.3.min.js"></script>
@@ -74,94 +74,108 @@
 	});
 </script>
 <script type="text/javascript">
-	var $j = jQuery.noConflict();
-	$j(document).ready(function () {
-		$j(".form_datetime").datetimepicker({
-			language: 'pl',
-			weekStart: 1,
-			todayBtn: 1,
-			autoclose: 1,
-			todayHighlight: 1,
-			startView: 2,
-			forceParse: 0,
-			showMeridian: 1
-		});
-	});
+    var $j = jQuery.noConflict();
+    $j(document).ready(function () {
+        $j(".form_datetime").datetimepicker({
+            showSecond: true,
+            dateFormat: 'dd/mm/yy',
+            timeFormat: 'hh:mm:ss',
+            language: 'pl',
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            forceParse: 0,
+            showMeridian: 1
+        });
+    });
 </script>
+<style>
+    .alert .alert-info {
+        padding-top: 300px;
+    }
+</style>
 <hr />
+@if (ViewBag.Save == 1)
+{
+    <div class="alert alert-info">
+       <strong>Gratulację</strong><p>Udało Ci się zapisać na wizytę !</p>
+    </div>
+}
 <form asp-action="Create">
-	<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-	<div class="col-md-3">
-		<h2>Wybierz date</h2>
-		<div class="form-group">
-			<label for="dtp_input1" class="control-label">Data</label>
-			<div class="input-group date form_datetime" data-date="@DateTime.Now" data-date-format="dd/MM/yyyy HH:mm:ss PP" data-link-field="dtp_input1">
-				<input asp-for="Date" class="form-control" size="16" type="text" value="" readonly>
-				<span class="input-group-addon left"><span class="glyphicon glyphicon-th"></span></span>
-			</div>
-			<input type="hidden" id="dtp_input1" value="" /><br />
-		</div>
-		<h2>Potwierdź dane</h2>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="col-md-3">
+        <h2>Wybierz date</h2>
+        <div class="form-group">
+            <label for="dtp_input1" class="control-label">Data</label>
+            <div class="input-group date form_datetime" data-link-field="dtp_input1">
+                <input asp-for="Date" class="form-control" size="16" type="datetime-local" value="" readonly>
+                <span class="input-group-addon left"><span class="glyphicon glyphicon-th"></span></span>
+            </div>
+            <input type="hidden" id="dtp_input1" value="" /><br />
+        </div>
+        <h2>Potwierdź dane</h2>
 
-		<div class="form-group">
-			<label class="control-label">Imię</label>
-			<input type="text" class="form-control" value="@ViewBag.User.FirstName">
-			<label class="control-label">Nazwisko</label>
-			<input type="text" class="form-control" value="@ViewBag.User.LastName">
-			<label class="control-label">Telefon</label>
-			<input type="text" class="form-control" value="@ViewBag.User.Telephone">
-			<label class="control-label">Pesel</label>
-			<input type="text" class="form-control" value="@ViewBag.User.Pesel">
-			<span asp-validation-for="UserId" class="text-danger"></span>
-		</div>
+        <div class="form-group">
+            <label class="control-label">Imię</label>
+            <input type="text" class="form-control" value="@ViewBag.User.FirstName">
+            <label class="control-label">Nazwisko</label>
+            <input type="text" class="form-control" value="@ViewBag.User.LastName">
+            <label class="control-label">Telefon</label>
+            <input type="text" class="form-control" value="@ViewBag.User.Telephone">
+            <label class="control-label">Pesel</label>
+            <input type="text" class="form-control" value="@ViewBag.User.Pesel">
+            <span asp-validation-for="UserId" class="text-danger"></span>
+        </div>
 
-	</div>
-	<div class="col-md-5" style="border: 2px dotted  #ff9999">
-		<h2>Wybierz badania</h2>
-		<div class="input-group col-md-8">
-			<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-			<input id="search" type="text" class="form-control">
-		</div>
-		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-		<div id="tests" class="" style="overflow-y: scroll; height:400px;">
-			<br />
-			@{ var listTest = ViewBag.TestList;}
-			@foreach (var item in listTest)
-		{
-			<div id="pan" class="form-group panel panel-default panelo">
-				<p id="TestsId" class="hidden">@item.Id</p>
-				<text>@item.Name</text>
+    </div>
+    <div class="col-md-5" style="border: 2px dotted  #ff9999">
+        <h2>Wybierz badania</h2>
+        <div class="input-group col-md-8">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+            <input id="search" type="text" class="form-control">
+        </div>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div id="tests" class="" style="overflow-y: scroll; height:400px;">
+            <br />
+            @{ var listTest = ViewBag.TestList;}
+            @foreach (var item in listTest)
+            {
+                <div id="pan" class="form-group panel panel-default panelo">
+                    <p id="TestsId" class="hidden">@item.Id</p>
+                    <text>@item.Name</text>
 
-				<text style="font-weight: bold; color: lightcoral">@item.testTypeCategory.Category</text>
+                    <text style="font-weight: bold; color: lightcoral">@item.testTypeCategory.Category</text>
 
-				<text style="font-weight: bold; color: darkred">Cena: @item.Price</text>
-				<button class="btn btn-sm btn-warning btn-cart" data-id="@item.Id" type="button" style="float:right">Dodaj</button>
-			</div>
-	}
-		</div>
-	</div>
-	<div class="col-md-4">
-		<h2>Dodane badania</h2>
-		<br />
-		<table id="testTable" class="table table-bordered table-hover">
-			<thead>
-				<tr>
-					<th class="nameT">Nazwa Badania</th>
-					<th class="priceT">Cena Badania</th>
-				</tr>
-			</thead>
-			<tbody></tbody>
-		</table>
-		<p style="display:inline; font-weight:bold; font-size: 20px;">W sumie:</p>
-		<p style="display:inline; font-weight:bold; font-size: 20px; color:brown" id="sum"></p>
+                    <text style="font-weight: bold; color: darkred">Cena: @item.Price</text>
+                    <button class="btn btn-sm btn-warning btn-cart" data-id="@item.Id" type="button" style="float:right">Dodaj</button>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="col-md-4">
+        <h2>Dodane badania</h2>
+        <br />
+        <table id="testTable" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="nameT">Nazwa Badania</th>
+                    <th class="priceT">Cena Badania</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <p style="display:inline; font-weight:bold; font-size: 20px;">W sumie:</p>
+        <p style="display:inline; font-weight:bold; font-size: 20px; color:brown" id="sum"></p>
 
-		<br /> <br />
-		<div class="form-group">
-			<input type="submit" value="Zapisz się" class="btn btn-info btn-lg" />
-		</div>
-	</div>
+        <br /> <br />
+        <div class="form-group">
+            <input type="submit" value="Zapisz się" class="btn btn-info btn-lg" />
+        </div>
+    </div>
 </form>
 
 @section Scripts {
-	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

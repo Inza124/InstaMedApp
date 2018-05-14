@@ -7,8 +7,7 @@
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+
     background-image: url("~/images/bg.jpg")
 }
 
@@ -29,11 +28,17 @@
 }
 
 /* Hide/rearrange for smaller screens */
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1000px) {
     /* Hide captions */
     .carousel-caption {
         display: none;
     }
+}
+
+.pane {
+width: 100%;
+margin-left: auto;
+margin-right: auto;
 }
 
 #pan {
