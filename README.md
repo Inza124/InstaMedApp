@@ -20,6 +20,10 @@ The application was written in ASP.NET Core using the Entity Framework as ORM. T
 ![Homepage](http://oi65.tinypic.com/33cacl5.jpg)
 ![Movie view](http://oi64.tinypic.com/16bykxg.jpg)
 ![Login page](http://oi64.tinypic.com/21aboxy.jpg)
+![Login page](http://oi64.tinypic.com/a9xq3d.jpg)
+![Login page](http://oi65.tinypic.com/357ews2.jpg)
+![Login page](http://oi67.tinypic.com/15duql1.jpg)
+![Login page](http://oi63.tinypic.com/2an4n8.jpg.jpg)
 
 ## Technologies
 * ASP.NET Core
