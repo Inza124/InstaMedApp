@@ -6,7 +6,6 @@ This is a web application to pass the "modern programming technologies" course a
 
 ## Table of contents
 * [General info](#general-info)
-* [Screenshots](#screenshots)
 * [Technologies](#technologies)
 * [Features](#features)
 * [Status](#status)
@@ -15,15 +14,6 @@ This is a web application to pass the "modern programming technologies" course a
 
 ## General info
 The application was written in ASP.NET Core using the Entity Framework as ORM. The application was written in a layered architecture. The use of this pattern significantly increased the readability of the code and helped in debugging. The application was written based on the MVC pattern.
-
-## Screenshots
-![Homepage](http://oi65.tinypic.com/33cacl5.jpg)
-![Movie view](http://oi64.tinypic.com/16bykxg.jpg)
-![Login page](http://oi64.tinypic.com/21aboxy.jpg)
-![Login page](http://oi64.tinypic.com/a9xq3d.jpg)
-![Login page](http://oi65.tinypic.com/357ews2.jpg)
-![Login page](http://oi67.tinypic.com/15duql1.jpg)
-![Login page](http://oi63.tinypic.com/2an4n8.jpg.jpg)
 
 ## Technologies
 * ASP.NET Core
